@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Contact | Vinayaka Stone Crusher
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <a href="{{ url_for('home') }}"
+           class="brand">
+
+            <div class="brand-logo">
+                VSC
+            </div>
+
+            <div>
+
+                <strong>
+                    VINAYAKA
+                </strong>
+
+                <span>
+                    STONE CRUSHER
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <button class="menu-toggle"
+                id="menuToggle"
+                type="button">
+
+            ☰
+
+        </button>
+
+
+        <nav id="mainNav">
+
+            <a href="{{ url_for('home') }}">
+                Home
+            </a>
+
+            <a href="{{ url_for('about') }}">
+                About
+            </a>
+
+            <a href="{{ url_for('materials') }}">
+                Materials
+            </a>
+
+            <a href="{{ url_for('gallery') }}">
+                Gallery
+            </a>
+
+            <a href="{{ url_for('contact') }}"
+               class="active nav-contact">
+                Contact
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<section class="page-hero">
+
+    <div>
+
+        <span class="section-label">
+            CONTACT US
+        </span>
+
+        <h1>
+            Let's discuss
+            <span>your requirement.</span>
+        </h1>
+
+        <p>
+            Contact Vinayaka Stone Crusher
+            for construction material requirements.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CONTACT INFORMATION
+===================================================== -->
+
+<section class="contact-section">
+
+    <div class="section-container contact-grid">
+
+
+        <div class="contact-info reveal">
+
+            <span class="section-label">
+                GET IN TOUCH
+            </span>
+
+            <h2>
+                Contact Information
+            </h2>
+
+            <p>
+                We are available to discuss
+                your construction material requirements.
+            </p>
+
+
+            <div class="contact-detail">
+
+                <strong>
+                    📍 Location
+                </strong>
+
+                <p>
+                    Madapatna, Tavarekere Hobli,
+                    Bangalore South, Karnataka
+                </p>
+
+            </div>
+
+
+            <div class="contact-detail">
+
+                <strong>
+                    📞 Phone
+                </strong>
+
+                <p>
+
+                    <a href="tel:9845446492">
+                        9845446492
+                    </a>
+
+                </p>
+
+            </div>
+
+
+            <div class="contact-detail">
+
+                <strong>
+                    🏗️ Materials
+                </strong>
+
+                <p>
+                    Sand, M-Sand, 20mm, 40mm,
+                    P-Sand, Jelly Stones and aggregates.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             REQUEST FORM
+        ================================================= -->
+
+        <div class="contact-form reveal">
+
+            <span class="section-label">
+                MATERIAL REQUEST
+            </span>
+
+            <h2>
+                Send Your Requirement
+            </h2>
+
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+
+                {% if messages %}
+
+                    <div class="flash-container">
+
+                        {% for category, message in messages %}
+
+                            <div class="flash-message {{ category }}">
+                                {{ message }}
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% endif %}
+
+            {% endwith %}
+
+
+            <form
+                action="{{ url_for('contact') }}"
+                method="POST">
+
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your name"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="10-digit phone number"
+                        pattern="[0-9]{10}"
+                        maxlength="10"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="material">
+                        Material Required
+                    </label>
+
+                    <select
+                        id="material"
+                        name="material"
+                        required>
+
+                        <option value="">
+                            -- Select Material --
+                        </option>
+
+                        <option value="Construction Sand">
+                            Construction Sand
+                        </option>
+
+                        <option value="M-Sand">
+                            M-Sand
+                        </option>
+
+                        <option value="20mm Aggregate">
+                            20mm Aggregate
+                        </option>
+
+                        <option value="40mm Aggregate">
+                            40mm Aggregate
+                        </option>
+
+                        <option value="P-Sand">
+                            P-Sand
+                        </option>
+
+                        <option value="Jelly Stones">
+                            Jelly Stones
+                        </option>
+
+                        <option value="Construction Aggregate">
+                            Construction Aggregate
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="quantity">
+                        Required Quantity
+                    </label>
+
+                    <input
+                        type="text"
+                        id="quantity"
+                        name="quantity"
+                        placeholder="Example: 5 tons"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="location">
+                        Delivery Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="location"
+                        name="location"
+                        placeholder="Enter delivery location"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="message">
+                        Message
+                    </label>
+
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="5"
+                        placeholder="Enter any additional requirements"></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="request-btn">
+
+                    Submit Request
+
+                </button>
+
+
+            </form>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="cta-section">
+
+    <div class="cta-content reveal">
+
+        <span class="section-label">
+            VINAYAKA STONE CRUSHER
+        </span>
+
+        <h2>
+            Quality materials.
+            <span>Reliable service.</span>
+        </h2>
+
+        <p>
+            We are ready to discuss your
+            construction material requirements.
+        </p>
+
+        <a href="tel:9845446492"
+           class="btn btn-primary">
+
+            Call 9845446492
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+
+            <div class="brand-logo">
+                VSC
+            </div>
+
+            <h3>
+                VINAYAKA STONE CRUSHER
+            </h3>
+
+            <p>
+                Quality construction materials
+                for stronger foundations.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>
+                Quick Links
+            </h4>
+
+            <a href="{{ url_for('home') }}">
+                Home
+            </a>
+
+            <a href="{{ url_for('about') }}">
+                About
+            </a>
+
+            <a href="{{ url_for('materials') }}">
+                Materials
+            </a>
+
+            <a href="{{ url_for('gallery') }}">
+                Gallery
+            </a>
+
+            <a href="{{ url_for('contact') }}">
+                Contact
+            </a>
+
+        </div>
+
+
+        <div class="footer-contact">
+
+            <h4>
+                Contact
+            </h4>
+
+            <p>
+                📍 Madapatna, Tavarekere Hobli,
+                Bangalore South, Karnataka
+            </p>
+
+            <p>
+                📞
+                <a href="tel:9845446492">
+                    9845446492
+                </a>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        © <span id="year"></span>
+        Vinayaka Stone Crusher.
+        All Rights Reserved.
+
+    </div>
+
+</footer>
+
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>
