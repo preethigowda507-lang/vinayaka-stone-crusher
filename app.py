@@ -9,7 +9,10 @@ app = Flask(__name__)
 # FLASK SETTINGS
 # ==========================================================
 
-app.secret_key = "vinayaka-stone-crusher-2026"
+app.secret_key = os.environ.get(
+    "SECRET_KEY",
+    "vinayaka-stone-crusher-2026"
+)
 
 
 # ==========================================================
@@ -21,11 +24,14 @@ app.config["MAIL_PORT"] = 587
 app.config["MAIL_USE_TLS"] = True
 app.config["MAIL_USE_SSL"] = False
 
+# Gmail address
 app.config["MAIL_USERNAME"] = os.environ.get(
     "MAIL_USERNAME",
     "preethigowda507@gmail.com"
 )
 
+# IMPORTANT:
+# Never put your Gmail password/app-password directly in this file.
 app.config["MAIL_PASSWORD"] = os.environ.get(
     "MAIL_PASSWORD",
     "uqmh ucop rhhr edik"
@@ -44,7 +50,6 @@ mail = Mail(app)
 
 @app.route("/")
 def index():
-
     return render_template("index.html")
 
 
@@ -54,7 +59,6 @@ def index():
 
 @app.route("/about")
 def about():
-
     return render_template("about.html")
 
 
@@ -189,7 +193,7 @@ def trucks():
 
 # ==========================================================
 # CONTACT PAGE
-# GET = SHOW PAGE
+# GET  = SHOW PAGE
 # POST = ACCEPT FORM
 # ==========================================================
 
@@ -197,9 +201,7 @@ def trucks():
 def contact():
 
     if request.method == "POST":
-
         return process_enquiry()
-
 
     selected_material = request.args.get(
         "material",
@@ -224,7 +226,6 @@ def contact():
 
 @app.route("/send-message", methods=["POST"])
 def send_message():
-
     return process_enquiry()
 
 
@@ -243,36 +244,30 @@ def process_enquiry():
         ""
     ).strip()
 
-
     phone = request.form.get(
         "phone",
         ""
     ).strip()
-
 
     location = request.form.get(
         "location",
         ""
     ).strip()
 
-
     material = request.form.get(
         "material",
         ""
     ).strip()
-
 
     truck = request.form.get(
         "truck",
         ""
     ).strip()
 
-
     quantity = request.form.get(
         "quantity",
         ""
     ).strip()
-
 
     message_text = request.form.get(
         "message",
@@ -336,20 +331,25 @@ def process_enquiry():
     # CHECK GMAIL CONFIGURATION
     # ------------------------------------------------------
 
-    if not app.config["MAIL_PASSWORD"]:
+    mail_password = app.config.get(
+        "MAIL_PASSWORD",
+        ""
+    )
+
+    if not mail_password:
 
         print()
         print("=" * 70)
         print("GMAIL PASSWORD IS NOT CONFIGURED")
         print("=" * 70)
         print(
-            "Please set the MAIL_PASSWORD environment variable."
+            "Set the MAIL_PASSWORD environment variable."
         )
         print("=" * 70)
         print()
 
         flash(
-            "The enquiry form works, but Gmail is not configured yet.",
+            "The enquiry form is available, but email service is not configured yet.",
             "error"
         )
 
@@ -413,9 +413,7 @@ Submitted from Vinayaka Stone Crusher website.
             body=email_body
         )
 
-
         mail.send(msg)
-
 
         print()
         print("=" * 70)
@@ -430,12 +428,10 @@ Submitted from Vinayaka Stone Crusher website.
         print("=" * 70)
         print()
 
-
         flash(
             "Your enquiry has been sent successfully.",
             "success"
         )
-
 
     except Exception as error:
 
@@ -446,7 +442,6 @@ Submitted from Vinayaka Stone Crusher website.
         print(error)
         print("=" * 70)
         print()
-
 
         flash(
             "The enquiry could not be sent. Please try again.",
@@ -505,7 +500,6 @@ def page_not_found(error):
 
     </head>
 
-
     <body>
 
         <h1>404</h1>
@@ -533,44 +527,21 @@ def page_not_found(error):
 if __name__ == "__main__":
 
     print()
-
     print("=" * 60)
-
-    print(
-        "          VINAYAKA STONE CRUSHER"
-    )
-
+    print("          VINAYAKA STONE CRUSHER")
     print("=" * 60)
-
-    print(
-        "Website   : http://127.0.0.1:5000/"
-    )
-
-    print(
-        "About     : http://127.0.0.1:5000/about"
-    )
-
-    print(
-        "Materials : http://127.0.0.1:5000/materials"
-    )
-
-    print(
-        "Trucks    : http://127.0.0.1:5000/trucks"
-    )
-
-    print(
-        "Contact   : http://127.0.0.1:5000/contact"
-    )
-
-    print(
-        "Mail User :",
-        app.config["MAIL_USERNAME"]
-    )
-
+    print("Website   : http://127.0.0.1:5000/")
+    print("About     : http://127.0.0.1:5000/about")
+    print("Materials : http://127.0.0.1:5000/materials")
+    print("Trucks    : http://127.0.0.1:5000/trucks")
+    print("Contact   : http://127.0.0.1:5000/contact")
+    print("Mail User :", app.config["MAIL_USERNAME"])
     print("=" * 60)
-
     print()
 
+    # Local development only.
+    # Production hosting should use Gunicorn:
+    # gunicorn app:app
 
     app.run(
         host="127.0.0.1",
