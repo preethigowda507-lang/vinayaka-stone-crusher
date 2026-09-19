@@ -1,0 +1,793 @@
+/* =========================================================
+   VINAYAKA STONE CRUSHER
+   TRUCK FLEET PAGE
+   ========================================================= */
+
+:root {
+    --truck-dark: #111;
+    --truck-dark-2: #1d1d1d;
+    --truck-orange: #f39c12;
+    --truck-orange-dark: #d97900;
+    --truck-light: #f5f5f5;
+    --truck-white: #ffffff;
+    --truck-gray: #666;
+}
+
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+body {
+    margin: 0;
+    background: #f4f4f4;
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.site-header {
+    position: relative;
+    z-index: 1000;
+}
+
+.navbar {
+    min-height: 76px;
+
+    padding: 0 6%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: rgba(15, 15, 15, 0.97);
+}
+
+.logo {
+    line-height: 1;
+}
+
+.logo a {
+    color: white;
+    text-decoration: none;
+
+    font-size: 1.25rem;
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+.logo span {
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 0.58rem;
+
+    letter-spacing: 3px;
+
+    color: var(--truck-orange);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.nav-links a {
+    color: #eee;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--truck-orange);
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.truck-hero {
+    position: relative;
+
+    min-height: 480px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.72),
+            rgba(0, 0, 0, 0.72)
+        ),
+        url("../images/crusher.jpg");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.truck-hero-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            transparent,
+            rgba(0,0,0,0.35)
+        );
+}
+
+.truck-hero-content {
+    position: relative;
+
+    z-index: 2;
+
+    width: min(900px, 90%);
+
+    color: white;
+}
+
+.hero-tag {
+    display: inline-block;
+
+    margin-bottom: 18px;
+
+    padding: 9px 20px;
+
+    border: 1px solid rgba(255,255,255,0.4);
+
+    border-radius: 30px;
+
+    font-size: 0.78rem;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+}
+
+.truck-hero h1 {
+    margin: 0;
+
+    font-size: clamp(2.7rem, 7vw, 5rem);
+
+    line-height: 1.05;
+
+    font-weight: 900;
+}
+
+.truck-hero h1 span {
+    display: block;
+
+    color: var(--truck-orange);
+}
+
+.truck-hero p {
+    max-width: 700px;
+
+    margin: 25px auto;
+
+    color: #ddd;
+
+    font-size: 1.1rem;
+
+    line-height: 1.8;
+}
+
+.hero-badges {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+.hero-badges span {
+    padding: 10px 16px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,0.1);
+
+    border: 1px solid rgba(255,255,255,0.18);
+
+    backdrop-filter: blur(8px);
+
+    font-size: 0.9rem;
+}
+
+
+/* =========================================================
+   INTRO
+   ========================================================= */
+
+.fleet-intro {
+    padding: 85px 20px 50px;
+
+    text-align: center;
+
+    background: white;
+}
+
+.fleet-intro-content {
+    width: min(850px, 92%);
+
+    margin: auto;
+}
+
+.section-tag {
+    font-size: 0.8rem;
+
+    font-weight: 900;
+
+    letter-spacing: 3px;
+
+    color: var(--truck-orange);
+}
+
+.fleet-intro h2 {
+    margin: 12px 0;
+
+    font-size: clamp(2rem, 4vw, 3.2rem);
+
+    line-height: 1.2;
+
+    font-weight: 900;
+}
+
+.fleet-intro h2 span {
+    color: var(--truck-orange);
+}
+
+.fleet-intro p {
+    max-width: 700px;
+
+    margin: auto;
+
+    color: var(--truck-gray);
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   TRUCK GRID
+   ========================================================= */
+
+.truck-fleet {
+    width: min(1250px, 92%);
+
+    margin: auto;
+
+    padding: 50px 0 90px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 35px;
+}
+
+
+/* =========================================================
+   TRUCK CARD
+   ========================================================= */
+
+.truck-card {
+    position: relative;
+
+    overflow: hidden;
+
+    background: white;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,0.10);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.truck-card:hover {
+    transform: translateY(-10px);
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,0.17);
+}
+
+.truck-number {
+    position: absolute;
+
+    top: 18px;
+    left: 20px;
+
+    z-index: 10;
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #111;
+
+    color: white;
+
+    font-size: 0.85rem;
+
+    font-weight: 900;
+}
+
+.featured-label {
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+
+    z-index: 10;
+
+    padding: 8px 14px;
+
+    border-radius: 30px;
+
+    background: var(--truck-orange);
+
+    color: #111;
+
+    font-size: 0.7rem;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   TRUCK IMAGE AREA
+   ========================================================= */
+
+.truck-image-area {
+    position: relative;
+
+    height: 350px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #ffffff 0%,
+            #eeeeee 60%,
+            #d8d8d8 100%
+        );
+}
+
+.load-badge {
+    position: absolute;
+
+    right: 20px;
+    top: 20px;
+
+    z-index: 5;
+
+    padding: 10px 15px;
+
+    border-radius: 30px;
+
+    background: var(--truck-orange);
+
+    color: #111;
+
+    font-size: 0.78rem;
+
+    font-weight: 900;
+}
+
+.truck-viewer {
+    width: 90%;
+    height: 290px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    perspective: 1000px;
+}
+
+.truck-photo {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    user-select: none;
+
+    transition:
+        transform 0.45s ease,
+        opacity 0.25s ease;
+
+    filter:
+        drop-shadow(
+            0 18px 15px rgba(0,0,0,0.20)
+        );
+}
+
+.truck-photo:hover {
+    transform: scale(1.04);
+}
+
+
+/* =========================================================
+   DETAILS
+   ========================================================= */
+
+.truck-details {
+    padding: 30px;
+}
+
+.truck-type {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--truck-orange-dark);
+
+    font-size: 0.72rem;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+.truck-details h2 {
+    margin: 0 0 8px;
+
+    font-size: 1.8rem;
+
+    font-weight: 900;
+}
+
+.capacity {
+    display: flex;
+
+    align-items: baseline;
+
+    gap: 8px;
+
+    margin: 5px 0 15px;
+}
+
+.capacity strong {
+    font-size: 2.3rem;
+
+    font-weight: 900;
+
+    color: var(--truck-orange-dark);
+}
+
+.capacity span {
+    font-size: 0.85rem;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+.truck-details p {
+    color: var(--truck-gray);
+
+    line-height: 1.7;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   FEATURES
+   ========================================================= */
+
+.truck-features {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-bottom: 25px;
+}
+
+.truck-features span {
+    padding: 7px 11px;
+
+    border-radius: 20px;
+
+    background: #f2f2f2;
+
+    color: #444;
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   CONTROLS
+   ========================================================= */
+
+.truck-controls {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+}
+
+.rotate-btn,
+.auto-rotate-btn {
+    border: none;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+.rotate-btn {
+    width: 44px;
+    height: 44px;
+
+    border-radius: 50%;
+
+    background: #151515;
+
+    color: white;
+
+    font-size: 1.2rem;
+}
+
+.rotate-btn:hover {
+    transform: scale(1.08);
+
+    background: var(--truck-orange);
+
+    color: #111;
+}
+
+.auto-rotate-btn {
+    padding: 11px 18px;
+
+    border-radius: 25px;
+
+    background: var(--truck-orange);
+
+    color: #111;
+
+    font-weight: 800;
+}
+
+.auto-rotate-btn:hover {
+    transform: translateY(-2px);
+
+    background: #ffb52e;
+}
+
+.auto-rotate-btn.running {
+    background: #111;
+
+    color: white;
+}
+
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.truck-cta {
+    padding: 85px 20px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #151515,
+            #292929
+        );
+
+    color: white;
+}
+
+.truck-cta-content {
+    width: min(800px, 92%);
+
+    margin: auto;
+}
+
+.truck-cta span {
+    font-size: 0.75rem;
+
+    font-weight: 900;
+
+    letter-spacing: 3px;
+
+    color: var(--truck-orange);
+}
+
+.truck-cta h2 {
+    margin: 12px 0;
+
+    font-size: clamp(2rem, 4vw, 3.2rem);
+
+    line-height: 1.2;
+}
+
+.truck-cta h2 strong {
+    color: var(--truck-orange);
+}
+
+.truck-cta p {
+    max-width: 700px;
+
+    margin: 20px auto 30px;
+
+    color: #ccc;
+
+    line-height: 1.8;
+}
+
+.truck-cta-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 14px 25px;
+
+    border-radius: 30px;
+
+    background: var(--truck-orange);
+
+    color: #111;
+
+    text-decoration: none;
+
+    font-weight: 900;
+
+    transition: 0.3s;
+}
+
+.truck-cta-button:hover {
+    transform: translateY(-4px);
+
+    background: #ffb52e;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.site-footer {
+    padding: 45px 20px;
+
+    text-align: center;
+
+    background: #0c0c0c;
+
+    color: white;
+}
+
+.footer-content {
+    width: min(800px, 92%);
+
+    margin: auto;
+}
+
+.footer-content h3 {
+    margin-bottom: 8px;
+
+    font-size: 1.3rem;
+}
+
+.footer-content p {
+    color: #aaa;
+
+    line-height: 1.6;
+}
+
+.copyright {
+    margin-top: 20px;
+
+    font-size: 0.8rem;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .truck-fleet {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .navbar {
+        padding: 15px 5%;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        gap: 12px 18px;
+    }
+
+    .truck-hero {
+        min-height: 430px;
+    }
+
+    .truck-image-area {
+        height: 280px;
+    }
+
+    .truck-viewer {
+        height: 235px;
+    }
+
+    .truck-details {
+        padding: 23px;
+    }
+
+    .truck-controls {
+        gap: 7px;
+    }
+}

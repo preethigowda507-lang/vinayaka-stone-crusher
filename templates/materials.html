@@ -1,620 +1,1525 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
     <meta name="description"
-          content="Construction materials available from Vinayaka Stone Crusher.">
+          content="Vinayaka Stone Crusher - Quality M-Sand, Stone Dust, C-Sand, P-Sand and construction aggregates in Bangalore South.">
 
-    <title>
-        Materials | Vinayaka Stone Crusher
-    </title>
+    <meta name="keywords"
+          content="Vinayaka Stone Crusher, M-Sand, Stone Dust, C-Sand, P-Sand, 6mm, 12mm, 20mm, 40mm, GSB">
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Materials | Vinayaka Stone Crusher</title>
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(255, 193, 7, 0.08), transparent 30%),
+                radial-gradient(circle at 80% 80%, rgba(255, 193, 7, 0.06), transparent 30%),
+                #080808;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* =====================================================
+           ANIMATED BACKGROUND
+        ===================================================== */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            z-index: -5;
+            overflow: hidden;
+            background:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.88),
+                    rgba(0, 0, 0, 0.95)
+                ),
+                url("/static/images/crusher.jpg");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .background::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent 49%,
+                    rgba(255, 193, 7, 0.035) 50%,
+                    transparent 51%
+                );
+
+            background-size: 80px 80px;
+
+            animation: gridMove 15s linear infinite;
+        }
+
+        @keyframes gridMove {
+
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(80px);
+            }
+        }
+
+
+        /* =====================================================
+           FLOATING PARTICLES
+        ===================================================== */
+
+        .particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        .particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+
+            background: #ffc107;
+
+            border-radius: 50%;
+
+            opacity: 0.35;
+
+            animation: floatParticle 10s infinite ease-in-out;
+        }
+
+        .particle:nth-child(1) {
+            left: 10%;
+            top: 20%;
+            animation-delay: 0s;
+        }
+
+        .particle:nth-child(2) {
+            left: 25%;
+            top: 70%;
+            animation-delay: 2s;
+        }
+
+        .particle:nth-child(3) {
+            left: 45%;
+            top: 35%;
+            animation-delay: 4s;
+        }
+
+        .particle:nth-child(4) {
+            left: 65%;
+            top: 75%;
+            animation-delay: 1s;
+        }
+
+        .particle:nth-child(5) {
+            left: 80%;
+            top: 25%;
+            animation-delay: 3s;
+        }
+
+        .particle:nth-child(6) {
+            left: 90%;
+            top: 60%;
+            animation-delay: 5s;
+        }
+
+        @keyframes floatParticle {
+
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.2;
+            }
+
+            50% {
+                transform: translateY(-100px) scale(1.5);
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 0.2;
+            }
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .navbar {
+            width: 100%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(5, 5, 5, 0.92);
+
+            backdrop-filter: blur(15px);
+
+            border-bottom: 1px solid rgba(255, 193, 7, 0.25);
+
+            box-shadow:
+                0 10px 40px rgba(0, 0, 0, 0.45);
+        }
+
+        .nav-container {
+            width: min(1200px, 92%);
+            margin: auto;
+
+            min-height: 75px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+
+            color: #ffc107;
+
+            font-size: 21px;
+            font-weight: 800;
+
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            display: block;
+
+            color: #ffffff;
+
+            font-family: 'Montserrat', sans-serif;
+
+            font-size: 9px;
+            letter-spacing: 4px;
+
+            margin-top: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+            position: relative;
+
+            transition: 0.3s;
+        }
+
+        .nav-links a::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            bottom: -8px;
+
+            width: 0;
+            height: 2px;
+
+            background: #ffc107;
+
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #ffc107;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+            width: min(1100px, 92%);
+
+            margin: auto;
+
+            min-height: 420px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 80px 20px 60px;
+
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 850px;
+
+            animation: heroAppear 1.2s ease forwards;
+        }
+
+        @keyframes heroAppear {
+
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-small {
+            font-family: 'Orbitron', sans-serif;
+
+            color: #ffc107;
+
+            font-size: 13px;
+
+            letter-spacing: 5px;
+
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+
+            font-size: clamp(60px, 10vw, 125px);
+
+            line-height: 0.9;
+
+            letter-spacing: 4px;
+
+            color: #ffffff;
+
+            text-shadow:
+                0 0 20px rgba(255, 193, 7, 0.15);
+
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #ffc107;
+        }
+
+        .hero p {
+            max-width: 700px;
+
+            margin: auto;
+
+            color: #cfcfcf;
+
+            font-size: 15px;
+
+            line-height: 1.9;
+        }
+
+
+        /* =====================================================
+           SECTION TITLE
+        ===================================================== */
+
+        .section-title {
+            text-align: center;
+
+            margin: 20px auto 50px;
+
+            width: min(900px, 90%);
+        }
+
+        .section-title .line {
+            width: 70px;
+            height: 3px;
+
+            background: #ffc107;
+
+            margin: 0 auto 20px;
+
+            box-shadow:
+                0 0 15px rgba(255, 193, 7, 0.7);
+        }
+
+        .section-title h2 {
+            font-family: 'Orbitron', sans-serif;
+
+            font-size: clamp(25px, 5vw, 42px);
+
+            letter-spacing: 2px;
+
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #aaa;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =====================================================
+           MATERIAL GRID
+        ===================================================== */
+
+        .materials-section {
+            width: min(1250px, 92%);
+
+            margin: auto;
+
+            padding-bottom: 90px;
+        }
+
+        .materials-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+
+        /* =====================================================
+           MATERIAL CARD
+        ===================================================== */
+
+        .material-card {
+            position: relative;
+
+            min-height: 390px;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            background: #111;
+
+            border: 1px solid rgba(255, 193, 7, 0.18);
+
+            box-shadow:
+                0 20px 50px rgba(0, 0, 0, 0.45);
+
+            transition:
+                transform 0.5s ease,
+                box-shadow 0.5s ease,
+                border-color 0.5s ease;
+
+            animation: cardAppear 0.8s ease both;
+        }
+
+        .material-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .material-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .material-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .material-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .material-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .material-card:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        .material-card:nth-child(7) {
+            animation-delay: 0.7s;
+        }
+
+        .material-card:nth-child(8) {
+            animation-delay: 0.8s;
+        }
+
+        .material-card:nth-child(9) {
+            animation-delay: 0.9s;
+        }
+
+        @keyframes cardAppear {
+
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .material-card:hover {
+            transform: translateY(-12px) scale(1.015);
+
+            border-color: rgba(255, 193, 7, 0.7);
+
+            box-shadow:
+                0 30px 70px rgba(0, 0, 0, 0.7),
+                0 0 30px rgba(255, 193, 7, 0.12);
+        }
+
+
+        /* =====================================================
+           MATERIAL IMAGE
+        ===================================================== */
+
+        .material-image {
+            position: absolute;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            transition:
+                transform 0.8s ease,
+                filter 0.8s ease;
+        }
+
+        .material-card:hover .material-image {
+            transform: scale(1.12);
+
+            filter:
+                brightness(0.65)
+                saturate(1.2);
+        }
+
+
+        /* =====================================================
+           IMAGE DARK OVERLAY
+        ===================================================== */
+
+        .material-card::before {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            z-index: 1;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(0, 0, 0, 0.10) 0%,
+                    rgba(0, 0, 0, 0.35) 40%,
+                    rgba(0, 0, 0, 0.96) 100%
+                );
+        }
+
+
+        /* =====================================================
+           CARD CONTENT
+        ===================================================== */
+
+        .material-overlay {
+            position: absolute;
+
+            inset: 0;
+
+            z-index: 2;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: flex-end;
+
+            align-items: center;
+
+            text-align: center;
+
+            padding: 28px 25px;
+        }
+
+        .material-number {
+            color: #ffc107;
+
+            font-family: 'Orbitron', sans-serif;
+
+            font-size: 10px;
+
+            letter-spacing: 3px;
+
+            margin-bottom: 8px;
+        }
+
+        .material-overlay h3 {
+            font-family: 'Bebas Neue', sans-serif;
+
+            font-size: 42px;
+
+            letter-spacing: 2px;
+
+            color: #ffffff;
+
+            line-height: 1;
+
+            margin-bottom: 12px;
+        }
+
+        .material-overlay p {
+            color: #d5d5d5;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+
+            max-width: 330px;
+
+            min-height: 62px;
+
+            margin-bottom: 18px;
+        }
+
+
+        /* =====================================================
+           QUOTE BUTTON
+        ===================================================== */
+
+        .quote-btn {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-width: 145px;
+
+            padding: 11px 20px;
+
+            border-radius: 50px;
+
+            background: #ffc107;
+
+            color: #111;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            transition: 0.35s;
+
+            box-shadow:
+                0 8px 20px rgba(255, 193, 7, 0.18);
+        }
+
+        .quote-btn:hover {
+            background: #ffffff;
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 12px 30px rgba(255, 255, 255, 0.18);
+        }
+
+
+        /* =====================================================
+           CTA
+        ===================================================== */
+
+        .cta {
+            width: min(1100px, 92%);
+
+            margin: 0 auto 90px;
+
+            padding: 55px 30px;
+
+            text-align: center;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255, 193, 7, 0.12),
+                    rgba(255, 255, 255, 0.025)
+                );
+
+            border: 1px solid rgba(255, 193, 7, 0.25);
+
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.4);
+        }
+
+        .cta h2 {
+            font-family: 'Orbitron', sans-serif;
+
+            font-size: clamp(25px, 5vw, 42px);
+
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            color: #aaa;
+
+            font-size: 14px;
+
+            margin-bottom: 25px;
+        }
+
+        .cta-button {
+            display: inline-block;
+
+            padding: 14px 30px;
+
+            border-radius: 50px;
+
+            background: #ffc107;
+
+            color: #111;
+
+            font-weight: 800;
+
+            font-size: 12px;
+
+            letter-spacing: 1px;
+
+            transition: 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #ffffff;
+
+            transform: translateY(-4px);
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+            border-top: 1px solid rgba(255, 193, 7, 0.15);
+
+            background: rgba(0, 0, 0, 0.75);
+
+            padding: 30px 20px;
+
+            text-align: center;
+        }
+
+        footer strong {
+            color: #ffc107;
+
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        footer p {
+            color: #777;
+
+            font-size: 11px;
+
+            margin-top: 8px;
+        }
+
+
+        /* =====================================================
+           MOBILE MENU BUTTON
+        ===================================================== */
+
+        .menu-button {
+            display: none;
+
+            border: none;
+
+            background: transparent;
+
+            color: #ffc107;
+
+            font-size: 28px;
+
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 950px) {
+
+            .materials-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .nav-container {
+                min-height: 65px;
+            }
+
+            .menu-button {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+
+                position: absolute;
+
+                top: 65px;
+                left: 0;
+                right: 0;
+
+                background: rgba(5, 5, 5, 0.98);
+
+                flex-direction: column;
+
+                padding: 25px;
+
+                gap: 22px;
+
+                border-bottom:
+                    1px solid rgba(255, 193, 7, 0.2);
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .hero {
+                min-height: 350px;
+
+                padding-top: 60px;
+            }
+
+            .hero h1 {
+                font-size: 65px;
+            }
+
+            .materials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .material-card {
+                min-height: 410px;
+            }
+
+        }
+
+
+        @media (max-width: 420px) {
+
+            .logo {
+                font-size: 16px;
+            }
+
+            .logo span {
+                font-size: 7px;
+            }
+
+            .hero h1 {
+                font-size: 55px;
+            }
+
+            .hero p {
+                font-size: 13px;
+            }
+
+            .material-overlay h3 {
+                font-size: 38px;
+            }
+
+        }
+
+    </style>
 </head>
 
 
 <body>
 
 
-<header class="navbar">
+    <!-- =====================================================
+         BACKGROUND
+    ====================================================== -->
 
-    <div class="nav-container">
+    <div class="background"></div>
 
-        <a href="{{ url_for('home') }}"
-           class="brand">
 
-            <div class="brand-logo">
-                VSC
-            </div>
+    <!-- =====================================================
+         PARTICLES
+    ====================================================== -->
 
-            <div>
-                <strong>VINAYAKA</strong>
+    <div class="particles">
+
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+
+    </div>
+
+
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="/" class="logo">
+                VINAYAKA
                 <span>STONE CRUSHER</span>
+            </a>
+
+
+            <button class="menu-button"
+                    onclick="toggleMenu()"
+                    aria-label="Open menu">
+
+                ☰
+
+            </button>
+
+
+            <nav class="nav-links" id="navLinks">
+
+                <a href="/">
+                    HOME
+                </a>
+
+                <a href="/about">
+                    ABOUT
+                </a>
+
+                <a href="/materials" class="active">
+                    MATERIALS
+                </a>
+
+                <a href="/trucks">
+                    TRUCKS
+                </a>
+
+                <a href="/contact">
+                    CONTACT
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-small">
+                QUALITY • STRENGTH • RELIABILITY
             </div>
+
+            <h1>
+                OUR
+                <span>MATERIALS</span>
+            </h1>
+
+            <p>
+                High-quality construction materials processed
+                and supplied by Vinayaka Stone Crusher for
+                residential, commercial and infrastructure projects
+                in Bangalore South.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SECTION TITLE
+    ====================================================== -->
+
+    <section class="section-title">
+
+        <div class="line"></div>
+
+        <h2>
+            CONSTRUCTION MATERIALS
+        </h2>
+
+        <p>
+            Choose the material required for your project.
+            Contact us for availability, quantity and pricing.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         MATERIALS
+    ====================================================== -->
+
+    <section class="materials-section">
+
+        <div class="materials-grid">
+
+
+            <!-- 01 - M-SAND -->
+
+            <div class="material-card">
+
+                <img
+                    src="/static/images/msand.jpg"
+                    alt="M-Sand"
+                    class="material-image"
+                >
+
+                <div class="material-overlay">
+
+                    <div class="material-number">
+                        MATERIAL 01
+                    </div>
+
+                    <h3>
+                        M-SAND
+                    </h3>
+
+                    <p>
+                        Manufactured sand processed from
+                        quality stone and suitable for concrete,
+                        construction and building applications.
+                    </p>
+
+                    <a
+                        href="/contact?material=M-Sand"
+                        class="quote-btn">
+
+                        GET QUOTE
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- 02 - STONE DUST -->
+
+            <div class="material-card">
+
+                <img
+                    src="/static/images/dust.jpg"
+                    alt="Stone Dust"
+                    class="material-image"
+                >
+
+                <div class="material-overlay">
+
+                    <div class="material-number">
+                        MATERIAL 02
+                    </div>
+
+                    <h3>
+                        STONE DUST
+                    </h3>
+
+                    <p>
+                        Fine crushed stone material commonly
+                        used for filling, leveling, paving and
+                        various construction applications.
+                    </p>
+
+                    <a
+                        href="/contact?material=Stone%20Dust"
+                        class="quote-btn">
+
+                        GET QUOTE
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- 03 - C-SAND -->
+
+            <div class="material-card">
+
+                <img
+                    src="/static/images/csand.jpg"
+                    alt="C-Sand"
+                    class="material-image"
+                >
+
+                <div class="material-overlay">
+
+                    <div class="material-number">
+                        MATERIAL 03
+                    </div>
+
+                    <h3>
+                        C-SAND
+                    </h3>
+
+                    <p>
+                        Carefully processed construction sand
+                        suitable for plastering, masonry and
+                        other building requirements.
+                    </p>
+
+                    <a
+                        href="/contact?material=C-Sand"
+                        class="quote-btn">
+
+                        GET QUOTE
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- 04 - P-SAND -->
+
+            <div class="material-card">
+
+                <img
+                    src="/static/images/psand.jpg"
+                    alt="P-Sand"
+                    class="material-image"
+                >
+
+                <div class="material-overlay">
+
+                    <div class="material-number">
+                        MATERIAL 04
+                    </div>
+
+                    <h3>
+                        P-SAND
+                    </h3>
+
+                    <p>
+                        Fine quality processed sand suitable
+                        for plastering and finishing applications
+                        in construction projects.
+                    </p>
+
+                    <a
+                        href="/contact?material=P-Sand"
+                        class="quote-btn">
+
+                        GET QUOTE
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- 05 - 6MM -->
+
+            <div class="material-card">
+
+                <img
+                    src="/static/images/6mm.jpg"
+                    alt="6mm Aggregate"
+                    class="material-image"
+                >
+
+                <div class="material-overlay">
+
+                    <div class="material-number">
+                        MATERIAL 05
+                    </div>
+
+                    <h3>
+                        6MM
+                    </h3>
+
+                    <p>
+                        6mm aggregate suitable for concrete,
+                        construction, drainage and other
+                        infrastructure requirements.
+                    </p>
+
+                    <a
+                        href="/contact?material=6mm"
+                        class="quote-btn">
+
+                        GET QUOTE
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- 06 - 12MM -->
+
+            <div class="material-card">
+
+                <img
+                    src="/static/images/12mm.jpg"
+                    alt="12mm Aggregate"
+                    class="material-image"
+                >
+
+                <div class="material-overlay">
+
+                    <div class="material-number">
+                        MATERIAL 06
+                    </div>
+
+                    <h3>
+                        12MM
+                    </h3>
+
+                    <p>
+                        Durable 12mm aggregate used in concrete
+                        works, structural construction and
+                        infrastructure projects.
+                    </p>
+
+                    <a
+                        href="/contact?material=12mm"
+                        class="quote-btn">
+
+                        GET QUOTE
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- 07 - 20MM -->
+
+            <div class="material-card">
+
+                <img
+                    src="/static/images/20mm.jpg"
+                    alt="20mm Aggregate"
+                    class="material-image"
+                >
+
+                <div class="material-overlay">
+
+                    <div class="material-number">
+                        MATERIAL 07
+                    </div>
+
+                    <h3>
+                        20MM
+                    </h3>
+
+                    <p>
+                        Strong and durable 20mm aggregate
+                        suitable for concrete production,
+                        foundations and general construction.
+                    </p>
+
+                    <a
+                        href="/contact?material=20mm"
+                        class="quote-btn">
+
+                        GET QUOTE
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- 08 - 40MM -->
+
+            <div class="material-card">
+
+                <img
+                    src="/static/images/40mm.jpg"
+                    alt="40mm Aggregate"
+                    class="material-image"
+                >
+
+                <div class="material-overlay">
+
+                    <div class="material-number">
+                        MATERIAL 08
+                    </div>
+
+                    <h3>
+                        40MM
+                    </h3>
+
+                    <p>
+                        Coarse aggregate suitable for heavy
+                        construction, foundations, road work
+                        and infrastructure applications.
+                    </p>
+
+                    <a
+                        href="/contact?material=40mm"
+                        class="quote-btn">
+
+                        GET QUOTE
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- 09 - GSB -->
+
+            <div class="material-card">
+
+                <img
+                    src="/static/images/gsb.jpg"
+                    alt="GSB"
+                    class="material-image"
+                >
+
+                <div class="material-overlay">
+
+                    <div class="material-number">
+                        MATERIAL 09
+                    </div>
+
+                    <h3>
+                        GSB
+                    </h3>
+
+                    <p>
+                        Granular Sub-Base material used for
+                        road construction, groundwork,
+                        foundations and infrastructure projects.
+                    </p>
+
+                    <a
+                        href="/contact?material=GSB"
+                        class="quote-btn">
+
+                        GET QUOTE
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CTA
+    ====================================================== -->
+
+    <section class="cta">
+
+        <h2>
+            NEED MATERIAL FOR YOUR PROJECT?
+        </h2>
+
+        <p>
+            Contact Vinayaka Stone Crusher for material
+            availability, quantity and delivery requirements.
+        </p>
+
+        <a
+            href="/contact"
+            class="cta-button">
+
+            CONTACT US
 
         </a>
 
-
-        <button class="menu-toggle"
-                id="menuToggle"
-                type="button">
-
-            ☰
-
-        </button>
+    </section>
 
 
-        <nav id="mainNav">
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
 
-            <a href="{{ url_for('home') }}">
-                Home
-            </a>
+    <footer>
 
-            <a href="{{ url_for('about') }}">
-                About
-            </a>
-
-            <a href="{{ url_for('materials') }}"
-               class="active">
-                Materials
-            </a>
-
-            <a href="{{ url_for('gallery') }}">
-                Gallery
-            </a>
-
-            <a href="{{ url_for('contact') }}"
-               class="nav-contact">
-                Contact
-            </a>
-
-        </nav>
-
-    </div>
-
-</header>
-
-
-<section class="page-hero">
-
-    <div>
-
-        <span class="section-label">
-            OUR MATERIALS
-        </span>
-
-        <h1>
-            Construction materials
-            <span>for every project.</span>
-        </h1>
+        <strong>
+            VINAYAKA STONE CRUSHER
+        </strong>
 
         <p>
-            Quality construction materials supplied
-            according to project requirements.
+            Quality Construction Materials • Bangalore South
         </p>
 
-    </div>
+        <p>
+            © 2026 Vinayaka Stone Crusher. All Rights Reserved.
+        </p>
 
-</section>
+    </footer>
 
 
-<!-- =====================================================
-     AVAILABLE MATERIALS
-===================================================== -->
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
 
-<section class="materials-list">
+    <script>
 
-    <div class="section-container">
+        function toggleMenu() {
 
-        <div class="section-heading">
+            const menu =
+                document.getElementById("navLinks");
 
-            <span class="section-label">
-                AVAILABLE MATERIALS
-            </span>
+            menu.classList.toggle("show");
 
-            <h2>
-                Construction Material List
-            </h2>
+        }
 
-            <p>
-                We provide construction materials
-                according to your requirements.
-            </p>
 
-        </div>
+        /* Close mobile menu after clicking a link */
 
+        document
+            .querySelectorAll(".nav-links a")
+            .forEach(function(link) {
 
-        <div class="material-list-grid">
+                link.addEventListener("click", function() {
 
+                    document
+                        .getElementById("navLinks")
+                        .classList.remove("show");
 
-            <div class="material-list-item reveal">
+                });
 
-                <div class="material-number">
-                    01
-                </div>
+            });
 
-                <div>
 
-                    <h3>
-                        Construction Sand
-                    </h3>
+        /* Simple mouse movement effect */
 
-                    <p>
-                        Quality construction sand suitable
-                        for different building requirements.
-                    </p>
+        document
+            .querySelectorAll(".material-card")
+            .forEach(function(card) {
 
-                </div>
+                card.addEventListener("mousemove", function(event) {
 
-            </div>
+                    const rect =
+                        card.getBoundingClientRect();
 
+                    const x =
+                        event.clientX - rect.left;
 
-            <div class="material-list-item reveal">
+                    const y =
+                        event.clientY - rect.top;
 
-                <div class="material-number">
-                    02
-                </div>
+                    const rotateY =
+                        ((x / rect.width) - 0.5) * 5;
 
-                <div>
+                    const rotateX =
+                        ((y / rect.height) - 0.5) * -5;
 
-                    <h3>
-                        M-Sand
-                    </h3>
+                    card.style.transform =
+                        `translateY(-12px)
+                         perspective(1000px)
+                         rotateX(${rotateX}deg)
+                         rotateY(${rotateY}deg)
+                         scale(1.015)`;
 
-                    <p>
-                        Manufactured sand suitable for
-                        construction and building work.
-                    </p>
+                });
 
-                </div>
 
-            </div>
+                card.addEventListener("mouseleave", function() {
 
+                    card.style.transform =
+                        "";
 
-            <div class="material-list-item reveal">
+                });
 
-                <div class="material-number">
-                    03
-                </div>
+            });
 
-                <div>
-
-                    <h3>
-                        20mm Aggregate
-                    </h3>
-
-                    <p>
-                        Crushed stone aggregate suitable
-                        for concrete and construction work.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="material-list-item reveal">
-
-                <div class="material-number">
-                    04
-                </div>
-
-                <div>
-
-                    <h3>
-                        40mm Aggregate
-                    </h3>
-
-                    <p>
-                        Durable aggregate suitable for
-                        foundations and infrastructure work.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="material-list-item reveal">
-
-                <div class="material-number">
-                    05
-                </div>
-
-                <div>
-
-                    <h3>
-                        P-Sand
-                    </h3>
-
-                    <p>
-                        Plastering sand suitable for
-                        plastering and finishing work.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="material-list-item reveal">
-
-                <div class="material-number">
-                    06
-                </div>
-
-                <div>
-
-                    <h3>
-                        Jelly Stones
-                    </h3>
-
-                    <p>
-                        Crushed stone materials suitable
-                        for concrete and civil construction.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="material-list-item reveal">
-
-                <div class="material-number">
-                    07
-                </div>
-
-                <div>
-
-                    <h3>
-                        Construction Aggregate
-                    </h3>
-
-                    <p>
-                        Aggregates for concrete,
-                        foundations and road work.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="material-list-item reveal">
-
-                <div class="material-number">
-                    08
-                </div>
-
-                <div>
-
-                    <h3>
-                        Other Materials
-                    </h3>
-
-                    <p>
-                        Additional construction materials
-                        can be discussed according to requirement.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     REQUEST FORM
-===================================================== -->
-
-<section class="request-section">
-
-    <div class="section-container">
-
-
-        <div class="section-heading">
-
-            <span class="section-label">
-                REQUEST MATERIAL
-            </span>
-
-            <h2>
-                Send Your Material Requirement
-            </h2>
-
-            <p>
-                Fill in the details below and
-                we will contact you.
-            </p>
-
-        </div>
-
-
-        {% with messages = get_flashed_messages(with_categories=true) %}
-
-            {% if messages %}
-
-                <div class="flash-container">
-
-                    {% for category, message in messages %}
-
-                        <div class="flash-message {{ category }}">
-                            {{ message }}
-                        </div>
-
-                    {% endfor %}
-
-                </div>
-
-            {% endif %}
-
-        {% endwith %}
-
-
-        <div class="request-form-container">
-
-            <form
-                action="{{ url_for('material_request') }}"
-                method="POST"
-                class="request-form">
-
-
-                <div class="form-group">
-
-                    <label for="name">
-                        Full Name
-                    </label>
-
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        placeholder="Enter your full name"
-                        required>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="phone">
-                        Phone Number
-                    </label>
-
-                    <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        placeholder="Enter 10-digit phone number"
-                        pattern="[0-9]{10}"
-                        maxlength="10"
-                        required>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="material">
-                        Select Material
-                    </label>
-
-                    <select
-                        id="material"
-                        name="material"
-                        required>
-
-                        <option value="">
-                            -- Select Material --
-                        </option>
-
-                        <option value="Construction Sand">
-                            Construction Sand
-                        </option>
-
-                        <option value="M-Sand">
-                            M-Sand
-                        </option>
-
-                        <option value="20mm Aggregate">
-                            20mm Aggregate
-                        </option>
-
-                        <option value="40mm Aggregate">
-                            40mm Aggregate
-                        </option>
-
-                        <option value="P-Sand">
-                            P-Sand
-                        </option>
-
-                        <option value="Jelly Stones">
-                            Jelly Stones
-                        </option>
-
-                        <option value="Construction Aggregate">
-                            Construction Aggregate
-                        </option>
-
-                        <option value="Other">
-                            Other Material
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="quantity">
-                        Required Quantity
-                    </label>
-
-                    <input
-                        type="text"
-                        id="quantity"
-                        name="quantity"
-                        placeholder="Example: 5 tons / 10 loads"
-                        required>
-
-                </div>
-
-
-                <div class="form-group full-width">
-
-                    <label for="location">
-                        Delivery Location
-                    </label>
-
-                    <input
-                        type="text"
-                        id="location"
-                        name="location"
-                        placeholder="Enter delivery location"
-                        required>
-
-                </div>
-
-
-                <div class="form-group full-width">
-
-                    <label for="message">
-                        Additional Requirements
-                    </label>
-
-                    <textarea
-                        id="message"
-                        name="message"
-                        rows="5"
-                        placeholder="Enter additional requirements"></textarea>
-
-                </div>
-
-
-                <div class="form-submit">
-
-                    <button
-                        type="submit"
-                        class="request-btn">
-
-                        Submit Material Request
-
-                    </button>
-
-                </div>
-
-
-            </form>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<footer class="footer">
-
-    <div class="footer-container">
-
-        <div class="footer-brand">
-
-            <div class="brand-logo">
-                VSC
-            </div>
-
-            <h3>
-                VINAYAKA STONE CRUSHER
-            </h3>
-
-            <p>
-                Quality construction materials
-                for stronger foundations.
-            </p>
-
-        </div>
-
-
-        <div class="footer-links">
-
-            <h4>
-                Quick Links
-            </h4>
-
-            <a href="{{ url_for('home') }}">
-                Home
-            </a>
-
-            <a href="{{ url_for('about') }}">
-                About
-            </a>
-
-            <a href="{{ url_for('materials') }}">
-                Materials
-            </a>
-
-            <a href="{{ url_for('gallery') }}">
-                Gallery
-            </a>
-
-            <a href="{{ url_for('contact') }}">
-                Contact
-            </a>
-
-        </div>
-
-
-        <div class="footer-contact">
-
-            <h4>
-                Contact
-            </h4>
-
-            <p>
-                📍 Madapatna, Tavarekere Hobli,
-                Bangalore South, Karnataka
-            </p>
-
-            <p>
-                📞
-                <a href="tel:9845446492">
-                    9845446492
-                </a>
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <div class="copyright">
-
-        © <span id="year"></span>
-        Vinayaka Stone Crusher.
-        All Rights Reserved.
-
-    </div>
-
-</footer>
-
-
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    </script>
 
 </body>
+
 </html>
+```

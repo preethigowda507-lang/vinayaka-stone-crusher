@@ -1,196 +1,202 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
 
-    /* =====================================================
-       MOBILE MENU
-    ===================================================== */
+        // ==========================================
+        // NAVBAR SCROLL
+        // ==========================================
 
-    const menuToggle =
-        document.getElementById("menuToggle");
-
-    const mainNav =
-        document.getElementById("mainNav");
+        const navbar =
+            document.querySelector(".navbar");
 
 
-    if (menuToggle && mainNav) {
+        window.addEventListener(
+            "scroll",
+            function () {
 
-        menuToggle.addEventListener("click", function () {
-
-            mainNav.classList.toggle("show");
-
-        });
-
-    }
+                if (!navbar) {
+                    return;
+                }
 
 
-    /* =====================================================
-       CLOSE MOBILE MENU
-    ===================================================== */
+                if (window.scrollY > 50) {
 
-    const navLinks =
-        document.querySelectorAll("#mainNav a");
+                    navbar.classList.add(
+                        "scrolled"
+                    );
 
+                } else {
 
-    navLinks.forEach(function (link) {
+                    navbar.classList.remove(
+                        "scrolled"
+                    );
 
-        link.addEventListener("click", function () {
-
-            if (mainNav) {
-
-                mainNav.classList.remove("show");
+                }
 
             }
-
-        });
-
-    });
+        );
 
 
-    /* =====================================================
-       COPYRIGHT YEAR
-    ===================================================== */
+        // ==========================================
+        // PHONE VALIDATION
+        // ==========================================
 
-    const yearElement =
-        document.getElementById("year");
-
-
-    if (yearElement) {
-
-        yearElement.textContent =
-            new Date().getFullYear();
-
-    }
+        const phone =
+            document.getElementById("phone");
 
 
-    /* =====================================================
-       SCROLL REVEAL
-    ===================================================== */
+        if (phone) {
 
-    const revealElements =
-        document.querySelectorAll(".reveal");
+            phone.addEventListener(
+                "input",
+                function () {
+
+                    this.value =
+                        this.value.replace(
+                            /[^0-9]/g,
+                            ""
+                        );
+
+                }
+            );
+
+        }
 
 
-    if ("IntersectionObserver" in window) {
+        // ==========================================
+        // FORM SUBMIT
+        // ==========================================
 
-        const revealObserver =
+        const form =
+            document.getElementById(
+                "contactForm"
+            );
+
+
+        if (form) {
+
+            form.addEventListener(
+                "submit",
+                function () {
+
+                    const button =
+                        form.querySelector(
+                            ".submit-btn"
+                        );
+
+
+                    if (button) {
+
+                        button.disabled = true;
+
+                        button.textContent =
+                            "Sending Request...";
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        // ==========================================
+        // REVEAL ANIMATION
+        // ==========================================
+
+        const revealElements =
+            document.querySelectorAll(
+                ".card, .material-card, .gallery-item, .truck-card"
+            );
+
+
+        const observer =
             new IntersectionObserver(
-                function (entries, observer) {
+                function (entries) {
 
-                    entries.forEach(function (entry) {
+                    entries.forEach(
+                        function (entry) {
 
-                        if (entry.isIntersecting) {
+                            if (entry.isIntersecting) {
 
-                            entry.target.classList.add("active");
+                                entry.target.classList.add(
+                                    "visible"
+                                );
 
-                            observer.unobserve(
-                                entry.target
-                            );
+                            }
 
                         }
-
-                    });
+                    );
 
                 },
                 {
-                    threshold: 0.10
+                    threshold: 0.12
                 }
             );
 
 
-        revealElements.forEach(function (element) {
+        revealElements.forEach(
+            function (element) {
 
-            revealObserver.observe(element);
+                observer.observe(element);
 
-        });
-
-    } else {
-
-        revealElements.forEach(function (element) {
-
-            element.classList.add("active");
-
-        });
-
-    }
-
-
-    /* =====================================================
-       NAVBAR SCROLL
-    ===================================================== */
-
-    const navbar =
-        document.querySelector(".navbar");
-
-
-    window.addEventListener("scroll", function () {
-
-        if (!navbar) {
-            return;
-        }
-
-
-        if (window.scrollY > 50) {
-
-            navbar.classList.add("scrolled");
-
-        } else {
-
-            navbar.classList.remove("scrolled");
-
-        }
-
-    });
-
-
-    /* =====================================================
-       PHONE NUMBER
-       ALLOW ONLY NUMBERS
-    ===================================================== */
-
-    const phoneInputs =
-        document.querySelectorAll(
-            'input[type="tel"]'
+            }
         );
 
+    }
+);
+document.addEventListener("DOMContentLoaded", function () {
 
-    phoneInputs.forEach(function (input) {
+    // Smooth page loading
+    document.body.classList.add("page-loaded");
 
-        input.addEventListener("input", function () {
 
-            input.value =
-                input.value.replace(/\D/g, "")
-                           .slice(0, 10);
+    // Animate cards when they enter the screen
+    const cards = document.querySelectorAll(
+        ".material-card, .feature-card, .gallery-card, .truck-card"
+    );
 
-        });
+    const observer = new IntersectionObserver(
+        function (entries) {
 
+            entries.forEach(function (entry) {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("show");
+
+                    observer.unobserve(entry.target);
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.12
+        }
+    );
+
+
+    cards.forEach(function (card) {
+        observer.observe(card);
     });
 
 
-    /* =====================================================
-       FORM SUBMIT BUTTON
-    ===================================================== */
-
-    const forms =
-        document.querySelectorAll("form");
-
+    // Prevent accidental empty form submissions
+    const forms = document.querySelectorAll("form");
 
     forms.forEach(function (form) {
 
         form.addEventListener("submit", function () {
 
-            const button =
-                form.querySelector(
-                    'button[type="submit"]'
-                );
-
+            const button = form.querySelector(
+                'button[type="submit"]'
+            );
 
             if (button) {
-
-                button.textContent =
-                    "Submitting...";
-
+                button.innerText = "Sending...";
                 button.disabled = true;
-
             }
 
         });
