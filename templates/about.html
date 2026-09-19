@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,8 +6,7 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description"
           content="About Vinayaka Stone Crusher - Quality construction materials, reliable service and transportation support in Bangalore South.">
@@ -14,12 +14,9 @@
     <title>About | Vinayaka Stone Crusher</title>
 
 
-    <!-- =====================================================
-         GOOGLE FONTS
-    ====================================================== -->
+    <!-- GOOGLE FONTS -->
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
     <link rel="preconnect"
           href="https://fonts.gstatic.com"
@@ -29,1181 +26,1228 @@
           rel="stylesheet">
 
 
-    <style>
+<style>
 
-        /* =====================================================
-           RESET
-        ===================================================== */
+/* =========================================================
+   RESET
+========================================================= */
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+html {
+    scroll-behavior: smooth;
+}
 
-        html {
-            scroll-behavior: smooth;
-        }
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: #080808;
+    color: white;
+    overflow-x: hidden;
+}
 
+a {
+    text-decoration: none;
+}
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: #080808;
-            color: #ffffff;
-            overflow-x: hidden;
-        }
 
+/* =========================================================
+   BACKGROUND
+========================================================= */
 
-        a {
-            text-decoration: none;
-        }
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -10;
 
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,0.95),
+            rgba(0,0,0,0.80),
+            rgba(0,0,0,0.62),
+            rgba(0,0,0,0.92)
+        ),
+        url("{{ url_for('static', filename='images/crusher.jpg') }}");
 
-        /* =====================================================
-           BACKGROUND
-        ===================================================== */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 
-        .background {
-            position: fixed;
-            inset: 0;
-            z-index: -10;
+    animation: backgroundZoom 18s ease-in-out infinite alternate;
+}
 
-            background:
-                linear-gradient(
-                    90deg,
-                    rgba(0,0,0,0.94),
-                    rgba(0,0,0,0.78),
-                    rgba(0,0,0,0.60),
-                    rgba(0,0,0,0.90)
-                ),
-                url("{{ url_for('static', filename='images/crusher.jpg') }}");
+@keyframes backgroundZoom {
 
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+    from {
+        transform: scale(1);
+    }
 
-            animation:
-                backgroundZoom 18s
-                ease-in-out
-                infinite
-                alternate;
-        }
+    to {
+        transform: scale(1.07);
+    }
+}
 
 
-        @keyframes backgroundZoom {
+/* =========================================================
+   MOVING GRID
+========================================================= */
 
-            from {
-                transform: scale(1);
-            }
+.background::after {
 
-            to {
-                transform: scale(1.08);
-            }
+    content: "";
 
-        }
+    position: absolute;
+    inset: 0;
 
+    background:
+        linear-gradient(
+            90deg,
+            transparent 49%,
+            rgba(255,193,7,0.04) 50%,
+            transparent 51%
+        );
 
-        /* =====================================================
-           MOVING GRID
-        ===================================================== */
+    background-size: 80px 80px;
 
-        .background::after {
+    animation: gridMove 15s linear infinite;
+}
 
-            content: "";
+@keyframes gridMove {
 
-            position: absolute;
-            inset: 0;
+    from {
+        transform: translateY(0);
+    }
 
-            background:
-                linear-gradient(
-                    90deg,
-                    transparent 49%,
-                    rgba(255,193,7,0.035) 50%,
-                    transparent 51%
-                );
+    to {
+        transform: translateY(80px);
+    }
+}
 
-            background-size: 80px 80px;
 
-            animation:
-                gridMove 15s
-                linear
-                infinite;
-        }
+/* =========================================================
+   PARTICLES
+========================================================= */
 
+.particles {
 
-        @keyframes gridMove {
+    position: fixed;
+    inset: 0;
 
-            from {
-                transform: translateY(0);
-            }
+    z-index: -5;
 
-            to {
-                transform: translateY(80px);
-            }
+    pointer-events: none;
+}
 
-        }
+.particle {
 
+    position: absolute;
 
-        /* =====================================================
-           PARTICLES
-        ===================================================== */
+    width: 5px;
+    height: 5px;
 
-        .particles {
+    border-radius: 50%;
 
-            position: fixed;
-            inset: 0;
+    background: #ffc107;
 
-            z-index: -5;
+    opacity: 0.3;
 
-            pointer-events: none;
-        }
+    animation:
+        particleFloat
+        10s
+        ease-in-out
+        infinite;
+}
 
+.particle:nth-child(1) {
+    left: 8%;
+    top: 25%;
+}
 
-        .particle {
+.particle:nth-child(2) {
+    left: 20%;
+    top: 70%;
+    animation-delay: 2s;
+}
 
-            position: absolute;
+.particle:nth-child(3) {
+    left: 42%;
+    top: 35%;
+    animation-delay: 4s;
+}
 
-            width: 5px;
-            height: 5px;
+.particle:nth-child(4) {
+    left: 65%;
+    top: 75%;
+    animation-delay: 1s;
+}
 
-            border-radius: 50%;
+.particle:nth-child(5) {
+    left: 82%;
+    top: 25%;
+    animation-delay: 3s;
+}
 
-            background: #ffc107;
+.particle:nth-child(6) {
+    left: 92%;
+    top: 60%;
+    animation-delay: 5s;
+}
 
-            opacity: 0.35;
+@keyframes particleFloat {
 
-            animation:
-                particleFloat
-                10s
-                ease-in-out
-                infinite;
-        }
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.15;
+    }
 
+    50% {
+        transform: translateY(-100px) scale(1.5);
+        opacity: 0.7;
+    }
 
-        .particle:nth-child(1) {
-            left: 8%;
-            top: 25%;
-            animation-delay: 0s;
-        }
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.15;
+    }
+}
 
 
-        .particle:nth-child(2) {
-            left: 20%;
-            top: 70%;
-            animation-delay: 2s;
-        }
+/* =========================================================
+   NAVBAR
+========================================================= */
 
+.navbar {
 
-        .particle:nth-child(3) {
-            left: 42%;
-            top: 35%;
-            animation-delay: 4s;
-        }
+    position: sticky;
 
+    top: 0;
 
-        .particle:nth-child(4) {
-            left: 65%;
-            top: 75%;
-            animation-delay: 1s;
-        }
+    z-index: 1000;
 
+    width: 100%;
 
-        .particle:nth-child(5) {
-            left: 82%;
-            top: 25%;
-            animation-delay: 3s;
-        }
+    background:
+        rgba(5,5,5,0.94);
 
+    backdrop-filter:
+        blur(15px);
 
-        .particle:nth-child(6) {
-            left: 92%;
-            top: 60%;
-            animation-delay: 5s;
-        }
+    border-bottom:
+        1px solid
+        rgba(255,193,7,0.25);
 
+    box-shadow:
+        0 10px 40px
+        rgba(0,0,0,0.6);
+}
 
-        @keyframes particleFloat {
 
-            0% {
-                transform:
-                    translateY(0)
-                    scale(1);
+.nav-container {
 
-                opacity: 0.15;
-            }
+    width:
+        min(1200px,92%);
 
+    min-height: 75px;
 
-            50% {
+    margin: auto;
 
-                transform:
-                    translateY(-100px)
-                    scale(1.5);
+    display: flex;
 
-                opacity: 0.7;
-            }
+    align-items: center;
 
+    justify-content:
+        space-between;
+}
 
-            100% {
 
-                transform:
-                    translateY(0)
-                    scale(1);
+/* =========================================================
+   LOGO
+========================================================= */
 
-                opacity: 0.15;
-            }
+.logo {
 
-        }
+    display: inline-block;
 
+    font-family:
+        'Orbitron',
+        sans-serif;
 
-        /* =====================================================
-           NAVBAR
-        ===================================================== */
+    color: #ffc107;
 
-        .navbar {
+    font-size: 21px;
 
-            position: sticky;
+    font-weight: 900;
 
-            top: 0;
+    letter-spacing: 1px;
 
-            z-index: 1000;
+    transition: 0.3s ease;
+}
 
-            width: 100%;
+.logo:hover {
 
-            background:
-                rgba(5,5,5,0.92);
+    transform: translateY(-2px);
 
-            backdrop-filter:
-                blur(15px);
+    text-shadow:
+        0 0 15px
+        rgba(255,193,7,0.7);
+}
 
-            border-bottom:
-                1px solid
-                rgba(255,193,7,0.25);
 
-            box-shadow:
-                0 10px 40px
-                rgba(0,0,0,0.5);
-        }
+.logo span {
 
+    display: block;
 
-        .nav-container {
+    margin-top: 3px;
 
-            width:
-                min(1200px,92%);
+    color: white;
 
-            min-height: 75px;
+    font-family:
+        'Montserrat',
+        sans-serif;
 
-            margin: auto;
+    font-size: 9px;
 
-            display: flex;
+    letter-spacing: 4px;
+}
 
-            align-items: center;
 
-            justify-content:
-                space-between;
-        }
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
+.nav-links {
 
-        /* =====================================================
-           LOGO
-        ===================================================== */
+    display: flex;
 
-        .logo {
+    align-items: center;
 
-            font-family:
-                'Orbitron',
-                sans-serif;
+    gap: 28px;
+}
 
-            color: #ffc107;
 
-            font-size: 21px;
+.nav-links a {
 
-            font-weight: 900;
+    position: relative;
 
-            letter-spacing: 1px;
-        }
+    display: inline-block;
 
+    padding: 10px 0;
 
-        .logo span {
+    color: #dcdcdc;
 
-            display: block;
+    font-family:
+        'Orbitron',
+        sans-serif;
 
-            margin-top: 3px;
+    font-size: 11px;
 
-            color: white;
+    font-weight: 700;
 
-            font-family:
-                'Montserrat',
-                sans-serif;
+    letter-spacing: 1px;
 
-            font-size: 9px;
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
 
-            letter-spacing: 4px;
-        }
 
+/* Normal underline */
 
-        /* =====================================================
-           NAV LINKS
-        ===================================================== */
+.nav-links a::after {
 
-        .nav-links {
+    content: "";
 
-            display: flex;
+    position: absolute;
 
-            align-items: center;
+    left: 50%;
 
-            gap: 25px;
-        }
+    bottom: 0;
 
+    width: 0;
 
-        .nav-links a {
+    height: 2px;
 
-            position: relative;
+    background: #ffc107;
 
-            color: white;
+    transform:
+        translateX(-50%);
 
-            font-family:
-                'Orbitron',
-                sans-serif;
+    transition:
+        width 0.35s ease;
 
-            font-size: 11px;
+    box-shadow:
+        0 0 10px
+        rgba(255,193,7,0.8);
+}
 
-            font-weight: 700;
 
-            letter-spacing: 1px;
+/* Hover */
 
-            transition: 0.3s;
-        }
+.nav-links a:hover {
 
+    color: #ffc107;
 
-        .nav-links a::after {
+    transform:
+        translateY(-2px);
+}
 
-            content: "";
+.nav-links a:hover::after {
 
-            position: absolute;
+    width: 100%;
+}
 
-            left: 0;
 
-            bottom: -8px;
+/* =========================================================
+   ACTIVE NAVIGATION
+========================================================= */
 
-            width: 0;
+.nav-links a.active {
 
-            height: 2px;
+    color: #ffc107;
 
-            background: #ffc107;
+    text-shadow:
+        0 0 12px
+        rgba(255,193,7,0.45);
+}
 
-            transition: 0.3s;
-        }
+.nav-links a.active::after {
 
+    width: 100%;
+}
 
-        .nav-links a:hover,
-        .nav-links a.active {
 
-            color: #ffc107;
-        }
+/* Animated glow under active button */
 
+.nav-links a.active::before {
 
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
+    content: "";
 
-            width: 100%;
-        }
+    position: absolute;
 
+    left: 50%;
 
-        /* =====================================================
-           MOBILE MENU
-        ===================================================== */
+    bottom: -5px;
 
-        .menu-button {
+    width: 5px;
 
-            display: none;
+    height: 5px;
 
-            background: transparent;
+    border-radius: 50%;
 
-            border: none;
+    background: #ffc107;
 
-            color: #ffc107;
+    transform:
+        translateX(-50%);
 
-            font-size: 28px;
+    box-shadow:
+        0 0 8px #ffc107,
+        0 0 18px #ffc107;
 
-            cursor: pointer;
-        }
+    animation:
+        activePulse 1.5s
+        ease-in-out
+        infinite;
+}
 
+@keyframes activePulse {
 
-        /* =====================================================
-           HERO
-        ===================================================== */
+    0%,100% {
+        opacity: 0.5;
+        transform:
+            translateX(-50%)
+            scale(0.8);
+    }
 
-        .hero {
+    50% {
+        opacity: 1;
+        transform:
+            translateX(-50%)
+            scale(1.4);
+    }
+}
 
-            min-height: 650px;
 
-            width:
-                min(1150px,92%);
+/* =========================================================
+   MOBILE BUTTON
+========================================================= */
 
-            margin: auto;
+.menu-button {
 
-            display: flex;
+    display: none;
 
-            align-items: center;
+    background: transparent;
 
-            justify-content: center;
+    border: none;
 
-            text-align: center;
+    color: #ffc107;
 
-            padding: 80px 20px;
-        }
+    font-size: 28px;
 
+    cursor: pointer;
 
-        .hero-content {
+    transition: 0.3s;
+}
 
-            max-width: 900px;
+.menu-button:hover {
 
-            animation:
-                heroAppear
-                1.2s
-                ease
-                forwards;
-        }
+    transform: scale(1.1);
 
+    text-shadow:
+        0 0 15px #ffc107;
+}
 
-        @keyframes heroAppear {
 
-            from {
+/* =========================================================
+   HERO
+========================================================= */
 
-                opacity: 0;
+.hero {
 
-                transform:
-                    translateY(50px);
-            }
+    min-height: 650px;
 
+    width:
+        min(1150px,92%);
 
-            to {
+    margin: auto;
 
-                opacity: 1;
+    display: flex;
 
-                transform:
-                    translateY(0);
-            }
+    align-items: center;
 
-        }
+    justify-content: center;
 
+    text-align: center;
 
-        .hero-small {
+    padding: 80px 20px;
+}
 
-            font-family:
-                'Orbitron',
-                sans-serif;
 
-            color: #ffc107;
+.hero-content {
 
-            font-size: 13px;
+    max-width: 900px;
 
-            font-weight: 700;
+    animation:
+        heroAppear
+        1.2s
+        ease forwards;
+}
 
-            letter-spacing: 5px;
+@keyframes heroAppear {
 
-            margin-bottom: 22px;
-        }
+    from {
 
+        opacity: 0;
 
-        .hero h1 {
+        transform:
+            translateY(50px);
+    }
 
-            font-family:
-                'Bebas Neue',
-                sans-serif;
+    to {
 
-            font-size:
-                clamp(70px,11vw,140px);
+        opacity: 1;
 
-            line-height: 0.85;
+        transform:
+            translateY(0);
+    }
+}
 
-            letter-spacing: 5px;
 
-            margin-bottom: 30px;
+.hero-small {
 
-            text-shadow:
-                0 0 25px
-                rgba(255,193,7,0.15);
-        }
+    font-family:
+        'Orbitron',
+        sans-serif;
 
+    color: #ffc107;
 
-        .hero h1 span {
+    font-size: 13px;
 
-            color: #ffc107;
+    font-weight: 700;
 
-            text-shadow:
-                0 0 25px
-                rgba(255,193,7,0.25);
-        }
+    letter-spacing: 5px;
 
+    margin-bottom: 22px;
+}
 
-        .hero-description {
 
-            max-width: 760px;
+.hero h1 {
 
-            margin: auto;
+    font-family:
+        'Bebas Neue',
+        sans-serif;
 
-            color: #d0d0d0;
+    font-size:
+        clamp(70px,11vw,140px);
 
-            font-size: 16px;
+    line-height: 0.85;
 
-            line-height: 1.9;
-        }
+    letter-spacing: 5px;
 
+    margin-bottom: 30px;
 
-        /* =====================================================
-           SCROLL INDICATOR
-        ===================================================== */
+    text-shadow:
+        0 0 25px
+        rgba(255,193,7,0.15);
+}
 
-        .scroll-down {
 
-            margin-top: 45px;
+.hero h1 span {
 
-            font-family:
-                'Orbitron',
-                sans-serif;
+    color: #ffc107;
 
-            font-size: 10px;
+    text-shadow:
+        0 0 25px
+        rgba(255,193,7,0.3);
+}
 
-            letter-spacing: 3px;
 
-            color: #999;
+.hero-description {
 
-            animation:
-                scrollBounce
-                2s
-                infinite;
-        }
+    max-width: 760px;
 
+    margin: auto;
 
-        @keyframes scrollBounce {
+    color: #d0d0d0;
 
-            0%,
-            100% {
+    font-size: 16px;
 
-                transform:
-                    translateY(0);
-            }
+    line-height: 1.9;
+}
 
 
-            50% {
+/* =========================================================
+   SCROLL
+========================================================= */
 
-                transform:
-                    translateY(8px);
-            }
+.scroll-down {
 
-        }
+    margin-top: 45px;
 
+    font-family:
+        'Orbitron',
+        sans-serif;
 
-        /* =====================================================
-           ABOUT SECTION
-        ===================================================== */
+    font-size: 10px;
 
-        .about-section {
+    letter-spacing: 3px;
 
-            padding:
-                110px 5%;
+    color: #999;
 
-            background:
-                rgba(5,5,5,0.96);
-        }
+    animation:
+        scrollBounce
+        2s
+        infinite;
+}
 
+@keyframes scrollBounce {
 
-        .about-container {
+    0%,100% {
+        transform: translateY(0);
+    }
 
-            width:
-                min(1200px,92%);
+    50% {
+        transform: translateY(8px);
+    }
+}
 
-            margin: auto;
 
-            display: grid;
+/* =========================================================
+   ABOUT SECTION
+========================================================= */
 
-            grid-template-columns:
-                1fr 1fr;
+.about-section {
 
-            gap: 70px;
+    padding:
+        110px 5%;
 
-            align-items: center;
-        }
+    background:
+        rgba(5,5,5,0.96);
+}
 
 
-        .section-label {
+.about-container {
 
-            font-family:
-                'Orbitron',
-                sans-serif;
+    width:
+        min(1200px,92%);
 
-            color: #ffc107;
+    margin: auto;
 
-            font-size: 12px;
+    display: grid;
 
-            font-weight: 700;
+    grid-template-columns:
+        1fr 1fr;
 
-            letter-spacing: 4px;
+    gap: 70px;
 
-            margin-bottom: 18px;
-        }
+    align-items: center;
+}
 
 
-        .about-text h2 {
+.section-label {
 
-            font-family:
-                'Bebas Neue',
-                sans-serif;
+    font-family:
+        'Orbitron',
+        sans-serif;
 
-            font-size:
-                clamp(50px,6vw,75px);
+    color: #ffc107;
 
-            line-height: 0.95;
+    font-size: 12px;
 
-            letter-spacing: 2px;
+    font-weight: 700;
 
-            margin-bottom: 30px;
-        }
+    letter-spacing: 4px;
 
+    margin-bottom: 18px;
+}
 
-        .about-text h2 span {
 
-            color: #ffc107;
-        }
+.about-text h2 {
 
+    font-family:
+        'Bebas Neue',
+        sans-serif;
 
-        .about-text p {
+    font-size:
+        clamp(50px,6vw,75px);
 
-            color: #bdbdbd;
+    line-height: 0.95;
 
-            font-size: 15px;
+    letter-spacing: 2px;
 
-            line-height: 1.9;
+    margin-bottom: 30px;
+}
 
-            margin-bottom: 18px;
-        }
 
+.about-text h2 span {
 
-        .about-text strong {
+    color: #ffc107;
+}
 
-            color: white;
-        }
 
+.about-text p {
 
-        /* =====================================================
-           FEATURE CARDS
-        ===================================================== */
+    color: #bdbdbd;
 
-        .feature-grid {
+    font-size: 15px;
 
-            display: grid;
+    line-height: 1.9;
 
-            grid-template-columns:
-                repeat(2,1fr);
+    margin-bottom: 18px;
+}
 
-            gap: 20px;
-        }
 
+.about-text strong {
 
-        .feature-card {
+    color: white;
+}
 
-            position: relative;
 
-            padding: 32px 25px;
+/* =========================================================
+   FEATURE CARDS
+========================================================= */
 
-            min-height: 210px;
+.feature-grid {
 
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(255,193,7,0.10),
-                    rgba(255,255,255,0.025)
-                );
+    display: grid;
 
-            border:
-                1px solid
-                rgba(255,193,7,0.16);
+    grid-template-columns:
+        repeat(2,1fr);
 
-            border-radius: 18px;
+    gap: 20px;
+}
 
-            overflow: hidden;
 
-            transition:
-                transform 0.4s,
-                border-color 0.4s,
-                box-shadow 0.4s;
-        }
+.feature-card {
 
+    position: relative;
 
-        .feature-card::before {
+    padding: 32px 25px;
 
-            content: "";
+    min-height: 210px;
 
-            position: absolute;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,193,7,0.10),
+            rgba(255,255,255,0.025)
+        );
 
-            width: 100px;
+    border:
+        1px solid
+        rgba(255,193,7,0.16);
 
-            height: 100px;
+    border-radius: 18px;
 
-            right: -50px;
+    overflow: hidden;
 
-            top: -50px;
+    transition:
+        transform 0.4s,
+        border-color 0.4s,
+        box-shadow 0.4s;
+}
 
-            background:
-                rgba(255,193,7,0.10);
 
-            border-radius: 50%;
-        }
+.feature-card::before {
 
+    content: "";
 
-        .feature-card:hover {
+    position: absolute;
 
-            transform:
-                translateY(-10px);
+    width: 100px;
+    height: 100px;
 
-            border-color:
-                rgba(255,193,7,0.65);
+    right: -50px;
+    top: -50px;
 
-            box-shadow:
-                0 20px 50px
-                rgba(0,0,0,0.5);
-        }
+    background:
+        rgba(255,193,7,0.10);
 
+    border-radius: 50%;
+}
 
-        .feature-number {
 
-            font-family:
-                'Orbitron',
-                sans-serif;
+.feature-card:hover {
 
-            color: #ffc107;
+    transform:
+        translateY(-10px);
 
-            font-size: 11px;
+    border-color:
+        rgba(255,193,7,0.65);
 
-            letter-spacing: 2px;
+    box-shadow:
+        0 20px 50px
+        rgba(0,0,0,0.5);
+}
 
-            margin-bottom: 20px;
-        }
 
+.feature-number {
 
-        .feature-card h3 {
+    font-family:
+        'Orbitron',
+        sans-serif;
 
-            font-family:
-                'Bebas Neue',
-                sans-serif;
+    color: #ffc107;
 
-            font-size: 31px;
+    font-size: 11px;
 
-            letter-spacing: 1px;
+    letter-spacing: 2px;
 
-            margin-bottom: 12px;
-        }
+    margin-bottom: 20px;
+}
 
 
-        .feature-card p {
+.feature-card h3 {
 
-            color: #999;
+    font-family:
+        'Bebas Neue',
+        sans-serif;
 
-            font-size: 12px;
+    font-size: 31px;
 
-            line-height: 1.7;
-        }
+    letter-spacing: 1px;
 
+    margin-bottom: 12px;
+}
 
-        /* =====================================================
-           VALUES SECTION
-        ===================================================== */
 
-        .values-section {
+.feature-card p {
 
-            padding:
-                110px 5%;
+    color: #999;
 
-            background:
-                #090909;
+    font-size: 12px;
 
-            text-align: center;
-        }
+    line-height: 1.7;
+}
 
 
-        .values-container {
+/* =========================================================
+   VALUES
+========================================================= */
 
-            width:
-                min(1200px,92%);
+.values-section {
 
-            margin: auto;
-        }
+    padding:
+        110px 5%;
 
+    background: #090909;
 
-        .values-title {
+    text-align: center;
+}
 
-            font-family:
-                'Bebas Neue',
-                sans-serif;
 
-            font-size:
-                clamp(50px,6vw,75px);
+.values-container {
 
-            letter-spacing: 3px;
+    width:
+        min(1200px,92%);
 
-            margin-bottom: 50px;
-        }
+    margin: auto;
+}
 
 
-        .values-title span {
+.values-title {
 
-            color: #ffc107;
-        }
+    font-family:
+        'Bebas Neue',
+        sans-serif;
 
+    font-size:
+        clamp(50px,6vw,75px);
 
-        .values-grid {
+    letter-spacing: 3px;
 
-            display: grid;
+    margin-bottom: 50px;
+}
 
-            grid-template-columns:
-                repeat(4,1fr);
 
-            gap: 20px;
-        }
+.values-title span {
 
+    color: #ffc107;
+}
 
-        .value-card {
 
-            padding: 35px 25px;
+.values-grid {
 
-            border:
-                1px solid
-                rgba(255,255,255,0.08);
+    display: grid;
 
-            border-radius: 15px;
+    grid-template-columns:
+        repeat(4,1fr);
 
-            background:
-                rgba(255,255,255,0.025);
+    gap: 20px;
+}
 
-            transition: 0.35s;
-        }
 
+.value-card {
 
-        .value-card:hover {
+    padding: 35px 25px;
 
-            transform:
-                translateY(-8px);
+    border:
+        1px solid
+        rgba(255,255,255,0.08);
 
-            border-color:
-                rgba(255,193,7,0.55);
-        }
+    border-radius: 15px;
 
+    background:
+        rgba(255,255,255,0.025);
 
-        .value-icon {
+    transition: 0.35s;
+}
 
-            font-size: 30px;
 
-            color: #ffc107;
+.value-card:hover {
 
-            margin-bottom: 20px;
-        }
+    transform:
+        translateY(-8px);
 
+    border-color:
+        rgba(255,193,7,0.55);
 
-        .value-card h3 {
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,0.4);
+}
 
-            font-family:
-                'Orbitron',
-                sans-serif;
 
-            font-size: 15px;
+.value-icon {
 
-            letter-spacing: 1px;
+    font-size: 30px;
 
-            margin-bottom: 15px;
-        }
+    color: #ffc107;
 
+    margin-bottom: 20px;
+}
 
-        .value-card p {
 
-            color: #999;
+.value-card h3 {
 
-            font-size: 12px;
+    font-family:
+        'Orbitron',
+        sans-serif;
 
-            line-height: 1.7;
-        }
+    font-size: 15px;
 
+    letter-spacing: 1px;
 
-        /* =====================================================
-           QUOTE SECTION
-        ===================================================== */
+    margin-bottom: 15px;
+}
 
-        .quote-section {
 
-            padding:
-                120px 5%;
+.value-card p {
 
-            text-align: center;
+    color: #999;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(255,193,7,0.16),
-                    rgba(0,0,0,0.96)
-                );
-        }
+    font-size: 12px;
 
+    line-height: 1.7;
+}
 
-        .quote-section h2 {
 
-            max-width: 900px;
+/* =========================================================
+   QUOTE
+========================================================= */
 
-            margin: auto;
+.quote-section {
 
-            font-family:
-                'Bebas Neue',
-                sans-serif;
+    padding:
+        120px 5%;
 
-            font-size:
-                clamp(55px,7vw,90px);
+    text-align: center;
 
-            line-height: 0.95;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,193,7,0.16),
+            rgba(0,0,0,0.96)
+        );
+}
 
-            letter-spacing: 3px;
-        }
 
+.quote-section h2 {
 
-        .quote-section h2 span {
+    max-width: 900px;
 
-            color: #ffc107;
-        }
+    margin: auto;
 
+    font-family:
+        'Bebas Neue',
+        sans-serif;
 
-        .quote-section p {
+    font-size:
+        clamp(55px,7vw,90px);
 
-            max-width: 700px;
+    line-height: 0.95;
 
-            margin:
-                25px auto 35px;
+    letter-spacing: 3px;
+}
 
-            color: #aaa;
 
-            font-size: 14px;
+.quote-section h2 span {
 
-            line-height: 1.8;
-        }
+    color: #ffc107;
+}
 
 
-        .contact-button {
+.quote-section p {
 
-            display:
-                inline-flex;
+    max-width: 700px;
 
-            align-items: center;
+    margin:
+        25px auto 35px;
 
-            justify-content: center;
+    color: #aaa;
 
-            padding:
-                15px 32px;
+    font-size: 14px;
 
-            border-radius: 50px;
+    line-height: 1.8;
+}
 
-            background: #ffc107;
 
-            color: #111;
+.contact-button {
 
-            font-family:
-                'Orbitron',
-                sans-serif;
+    display:
+        inline-flex;
 
-            font-size: 11px;
+    align-items: center;
 
-            font-weight: 800;
+    justify-content: center;
 
-            letter-spacing: 1px;
+    padding:
+        15px 32px;
 
-            transition: 0.35s;
-        }
+    border-radius: 50px;
 
+    background: #ffc107;
 
-        .contact-button:hover {
+    color: #111;
 
-            background: white;
+    font-family:
+        'Orbitron',
+        sans-serif;
 
-            transform:
-                translateY(-4px);
+    font-size: 11px;
 
-            box-shadow:
-                0 15px 35px
-                rgba(255,255,255,0.15);
-        }
+    font-weight: 800;
 
+    letter-spacing: 1px;
 
-        /* =====================================================
-           FOOTER
-        ===================================================== */
+    transition: 0.35s;
+}
 
-        footer {
 
-            padding:
-                35px 20px;
+.contact-button:hover {
 
-            text-align: center;
+    background: white;
 
-            background: #050505;
+    transform:
+        translateY(-4px);
 
-            border-top:
-                1px solid
-                rgba(255,193,7,0.15);
-        }
+    box-shadow:
+        0 15px 35px
+        rgba(255,255,255,0.15);
+}
 
 
-        footer strong {
+/* =========================================================
+   FOOTER
+========================================================= */
 
-            font-family:
-                'Orbitron',
-                sans-serif;
+footer {
 
-            color: #ffc107;
+    padding:
+        35px 20px;
 
-            font-size: 15px;
+    text-align: center;
 
-            letter-spacing: 2px;
-        }
+    background: #050505;
 
+    border-top:
+        1px solid
+        rgba(255,193,7,0.15);
+}
 
-        footer p {
 
-            color: #777;
+footer strong {
 
-            font-size: 11px;
+    font-family:
+        'Orbitron',
+        sans-serif;
 
-            margin-top: 9px;
-        }
+    color: #ffc107;
 
+    font-size: 15px;
 
-        /* =====================================================
-           RESPONSIVE
-        ===================================================== */
+    letter-spacing: 2px;
+}
 
-        @media (max-width: 950px) {
 
-            .about-container {
+footer p {
 
-                grid-template-columns: 1fr;
-            }
+    color: #777;
 
+    font-size: 11px;
 
-            .values-grid {
+    margin-top: 9px;
+}
 
-                grid-template-columns:
-                    repeat(2,1fr);
-            }
 
-        }
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
+@media (max-width: 950px) {
 
-        @media (max-width: 700px) {
+    .about-container {
 
-            .nav-container {
+        grid-template-columns: 1fr;
+    }
 
-                min-height: 65px;
-            }
+    .values-grid {
 
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+}
 
-            .menu-button {
 
-                display: block;
-            }
+@media (max-width: 700px) {
 
+    .nav-container {
 
-            .nav-links {
+        min-height: 65px;
+    }
 
-                display: none;
+    .menu-button {
 
-                position: absolute;
+        display: block;
+    }
 
-                top: 65px;
+    .nav-links {
 
-                left: 0;
+        display: none;
 
-                right: 0;
+        position: absolute;
 
-                background:
-                    rgba(5,5,5,0.98);
+        top: 65px;
 
-                flex-direction: column;
+        left: 0;
 
-                padding: 25px;
+        right: 0;
 
-                gap: 22px;
+        background:
+            rgba(5,5,5,0.98);
 
-                border-bottom:
-                    1px solid
-                    rgba(255,193,7,0.2);
-            }
+        flex-direction: column;
 
+        padding: 25px;
 
-            .nav-links.show {
+        gap: 18px;
 
-                display: flex;
-            }
+        border-bottom:
+            1px solid
+            rgba(255,193,7,0.2);
+    }
 
+    .nav-links.show {
 
-            .hero {
+        display: flex;
+    }
 
-                min-height: 550px;
-            }
+    .hero {
 
+        min-height: 550px;
+    }
 
-            .hero h1 {
+    .hero h1 {
 
-                font-size: 75px;
-            }
+        font-size: 75px;
+    }
 
+    .feature-grid {
 
-            .feature-grid {
+        grid-template-columns: 1fr;
+    }
 
-                grid-template-columns: 1fr;
-            }
+    .values-grid {
 
+        grid-template-columns: 1fr;
+    }
+}
 
-            .values-grid {
 
-                grid-template-columns:
-                    1fr;
-            }
+@media (max-width: 420px) {
 
-        }
+    .logo {
 
+        font-size: 16px;
+    }
 
-        @media (max-width: 420px) {
+    .logo span {
 
-            .logo {
+        font-size: 7px;
+    }
 
-                font-size: 16px;
-            }
+    .hero h1 {
 
+        font-size: 58px;
+    }
 
-            .logo span {
+    .hero-small {
 
-                font-size: 7px;
-            }
+        font-size: 9px;
 
+        letter-spacing: 3px;
+    }
 
-            .hero h1 {
+    .hero-description {
 
-                font-size: 58px;
-            }
+        font-size: 13px;
+    }
+}
 
-
-            .hero-small {
-
-                font-size: 9px;
-
-                letter-spacing: 3px;
-            }
-
-
-            .hero-description {
-
-                font-size: 13px;
-            }
-
-        }
-
-    </style>
+</style>
 
 </head>
 
@@ -1211,233 +1255,495 @@
 <body>
 
 
-    <!-- =====================================================
-         BACKGROUND
-    ====================================================== -->
+<!-- =========================================================
+     BACKGROUND
+========================================================= -->
 
-    <div class="background"></div>
-
-
-    <!-- =====================================================
-         PARTICLES
-    ====================================================== -->
-
-    <div class="particles">
-
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-
-    </div>
+<div class="background"></div>
 
 
-    <!-- =====================================================
-         NAVBAR
-    ====================================================== -->
+<!-- PARTICLES -->
 
-    <header class="navbar">
+<div class="particles">
 
-        <div class="nav-container">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+
+</div>
 
 
-            <!-- HOME / LOGO -->
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
 
-            <a href="{{ url_for('index') }}"
-               class="logo">
+<header class="navbar">
 
-                VINAYAKA
+    <div class="nav-container">
 
-                <span>
-                    STONE CRUSHER
-                </span>
 
+        <!-- LOGO -->
+
+        <a href="{{ url_for('index') }}"
+           class="logo">
+
+            VINAYAKA
+
+            <span>
+                STONE CRUSHER
+            </span>
+
+        </a>
+
+
+        <!-- MOBILE MENU -->
+
+        <button
+            class="menu-button"
+            type="button"
+            aria-label="Open navigation menu"
+            onclick="toggleMenu()">
+
+            ☰
+
+        </button>
+
+
+        <!-- NAVIGATION LINKS -->
+
+        <nav
+            class="nav-links"
+            id="navLinks">
+
+
+            <a href="{{ url_for('index') }}">
+                HOME
             </a>
 
 
-            <!-- MOBILE BUTTON -->
-
-            <button
-                class="menu-button"
-                type="button"
-                onclick="toggleMenu()">
-
-                ☰
-
-            </button>
+            <a href="{{ url_for('about') }}"
+               class="active">
+                ABOUT
+            </a>
 
 
-            <!-- NAVIGATION -->
-
-            <nav
-                class="nav-links"
-                id="navLinks">
+            <a href="{{ url_for('materials') }}">
+                MATERIALS
+            </a>
 
 
-                <a href="{{ url_for('index') }}">
-
-                    HOME
-
-                </a>
+            <a href="{{ url_for('trucks') }}">
+                TRUCKS
+            </a>
 
 
-                <a
-                    href="{{ url_for('about') }}"
-                    class="active">
-
-                    ABOUT
-
-                </a>
+            <a href="{{ url_for('contact') }}">
+                CONTACT
+            </a>
 
 
-                <a href="{{ url_for('materials') }}">
+        </nav>
 
-                    MATERIALS
+    </div>
 
-                </a>
-
-
-                <a href="{{ url_for('trucks') }}">
-
-                    TRUCKS
-
-                </a>
+</header>
 
 
-                <a href="{{ url_for('contact') }}">
+<!-- =========================================================
+     HERO
+========================================================= -->
 
-                    CONTACT
+<section class="hero">
 
-                </a>
+    <div class="hero-content">
 
+        <div class="hero-small">
 
-            </nav>
+            QUALITY • STRENGTH • RELIABILITY
 
         </div>
 
-    </header>
+
+        <h1>
+
+            ABOUT
+
+            <span>US</span>
+
+        </h1>
 
 
-    <!-- =====================================================
-         HERO
-    ====================================================== -->
+        <p class="hero-description">
 
-    <section class="hero">
+            Building stronger foundations with quality
+            construction materials, dependable service
+            and reliable transportation support.
 
-        <div class="hero-content">
+        </p>
 
 
-            <div class="hero-small">
+        <div class="scroll-down">
 
-                QUALITY • STRENGTH • RELIABILITY
+            ↓ &nbsp; DISCOVER OUR STORY
 
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ABOUT INFORMATION
+========================================================= -->
+
+<section class="about-section">
+
+    <div class="about-container">
+
+
+        <div class="about-text">
+
+            <div class="section-label">
+                WHO WE ARE
             </div>
 
 
-            <h1>
+            <h2>
 
-                ABOUT
+                BUILT ON
 
-                <span>US</span>
+                <span>QUALITY.</span>
 
-            </h1>
+            </h2>
 
 
-            <p class="hero-description">
+            <p>
 
-                Building stronger foundations with quality
-                construction materials, dependable service
-                and reliable transportation support.
+                Vinayaka Stone Crusher is focused on
+                supplying dependable construction materials
+                for residential, commercial and infrastructure
+                requirements.
 
             </p>
 
 
-            <div class="scroll-down">
+            <p>
 
-                ↓ &nbsp; DISCOVER OUR STORY
+                We provide a range of construction materials
+                including M-Sand, stone dust, C-Sand,
+                P-Sand and stone aggregates.
 
-            </div>
+            </p>
 
+
+            <p>
+
+                Our goal is simple:
+
+                <strong>
+                    provide quality materials with
+                    reliable service.
+                </strong>
+
+            </p>
+
+
+            <p>
+
+                With transportation support and a
+                customer-focused approach, we aim to make
+                material procurement easier for construction
+                projects.
+
+            </p>
 
         </div>
 
-    </section>
+
+        <!-- FEATURE CARDS -->
+
+        <div class="feature-grid">
 
 
-    <!-- =====================================================
-         ABOUT INFORMATION
-    ====================================================== -->
+            <div class="feature-card">
 
-    <section class="about-section">
-
-        <div class="about-container">
-
-
-            <!-- ABOUT TEXT -->
-
-            <div class="about-text">
-
-
-                <div class="section-label">
-
-                    WHO WE ARE
-
+                <div class="feature-number">
+                    01
                 </div>
 
-
-                <h2>
-
-                    BUILT ON
-
-                    <span>QUALITY.</span>
-
-                </h2>
-
+                <h3>
+                    20+ YEARS
+                </h3>
 
                 <p>
-
-                    Vinayaka Stone Crusher is focused on
-                    supplying dependable construction materials
-                    for residential, commercial and infrastructure
+                    More than two decades of experience
+                    supporting construction material
                     requirements.
-
                 </p>
-
-
-                <p>
-
-                    We provide a range of construction materials
-                    including M-Sand, stone dust, C-Sand,
-                    P-Sand and stone aggregates.
-
-                </p>
-
-
-                <p>
-
-                    Our goal is simple:
-
-                    <strong>
-
-                        provide quality materials with
-                        reliable service.
-
-                    </strong>
-
-                </p>
-
-
-                <p>
-
-                    With transportation support and a
-                    customer-focused approach, we aim to make
-                    material procurement easier for construction
-                    projects.
-
-                </p>
-
 
             </div>
 
+
+            <div class="feature-card">
+
+                <div class="feature-number">
+                    02
+                </div>
+
+                <h3>
+                    1000+ DELIVERIES
+                </h3>
+
+                <p>
+                    Reliable material transportation for
+                    different construction requirements.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-number">
+                    03
+                </div>
+
+                <h3>
+                    QUALITY
+                </h3>
+
+                <p>
+                    Construction materials selected with
+                    quality and consistency in mind.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-number">
+                    04
+                </div>
+
+                <h3>
+                    KARNATAKA
+                </h3>
+
+                <p>
+                    Delivery support available across
+                    Karnataka according to requirements.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     VALUES
+========================================================= -->
+
+<section class="values-section">
+
+    <div class="values-container">
+
+        <div class="section-label">
+            WHAT WE STAND FOR
+        </div>
+
+
+        <h2 class="values-title">
+
+            OUR
+
+            <span>VALUES</span>
+
+        </h2>
+
+
+        <div class="values-grid">
+
+
+            <div class="value-card">
+
+                <div class="value-icon">
+                    ◆
+                </div>
+
+                <h3>
+                    QUALITY
+                </h3>
+
+                <p>
+                    We focus on supplying dependable
+                    construction materials.
+                </p>
+
+            </div>
+
+
+            <div class="value-card">
+
+                <div class="value-icon">
+                    ⚙
+                </div>
+
+                <h3>
+                    RELIABILITY
+                </h3>
+
+                <p>
+                    Reliable service and transportation
+                    support for customer requirements.
+                </p>
+
+            </div>
+
+
+            <div class="value-card">
+
+                <div class="value-icon">
+                    🚚
+                </div>
+
+                <h3>
+                    DELIVERY
+                </h3>
+
+                <p>
+                    Transportation support for selected
+                    materials and required quantities.
+                </p>
+
+            </div>
+
+
+            <div class="value-card">
+
+                <div class="value-icon">
+                    ★
+                </div>
+
+                <h3>
+                    TRUST
+                </h3>
+
+                <p>
+                    Building long-term relationships through
+                    dependable service.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     QUOTE
+========================================================= -->
+
+<section class="quote-section">
+
+    <h2>
+
+        STRONGER BUILDING
+
+        <span>
+            STARTS HERE.
+        </span>
+
+    </h2>
+
+
+    <p>
+
+        Explore our construction materials and
+        transportation options or contact us for
+        your requirements.
+
+    </p>
+
+
+    <a href="{{ url_for('contact') }}"
+       class="contact-button">
+
+        CONTACT US
+
+    </a>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <strong>
+        VINAYAKA STONE CRUSHER
+    </strong>
+
+    <p>
+        © 2026 Vinayaka Stone Crusher.
+        All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+function toggleMenu() {
+
+    const nav =
+        document.getElementById("navLinks");
+
+    nav.classList.toggle("show");
+
+}
+
+
+/* Close mobile menu after clicking a link */
+
+document
+    .querySelectorAll(".nav-links a")
+    .forEach(function(link) {
+
+        link.addEventListener(
+            "click",
+            function() {
+
+                document
+                    .getElementById("navLinks")
+                    .classList.remove("show");
+
+            }
+        );
+
+    });
+
+</script>
+
+
+</body>
+
+</html>
+```
