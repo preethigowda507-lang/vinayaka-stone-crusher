@@ -1,6 +1,6 @@
 /* =========================================================
    VINAYAKA STONE CRUSHER
-   TRUCK FLEET PAGE
+   TRUCK FEED PAGE
    ========================================================= */
 
 :root {
@@ -35,13 +35,10 @@ body {
 
 .navbar {
     min-height: 76px;
-
     padding: 0 6%;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     background: rgba(15, 15, 15, 0.97);
 }
 
@@ -52,22 +49,16 @@ body {
 .logo a {
     color: white;
     text-decoration: none;
-
     font-size: 1.25rem;
     font-weight: 900;
-
     letter-spacing: 1px;
 }
 
 .logo span {
     display: block;
-
     margin-top: 5px;
-
     font-size: 0.58rem;
-
     letter-spacing: 3px;
-
     color: var(--truck-orange);
 }
 
@@ -79,11 +70,8 @@ body {
 
 .nav-links a {
     color: #eee;
-
     text-decoration: none;
-
     font-weight: 600;
-
     transition: 0.3s;
 }
 
@@ -99,13 +87,10 @@ body {
 
 .truck-hero {
     position: relative;
-
     min-height: 480px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     text-align: center;
 
     background:
@@ -127,13 +112,12 @@ body {
         radial-gradient(
             circle at center,
             transparent,
-            rgba(0,0,0,0.35)
+            rgba(0, 0, 0, 0.35)
         );
 }
 
 .truck-hero-content {
     position: relative;
-
     z-index: 2;
 
     width: min(900px, 90%);
@@ -145,17 +129,13 @@ body {
     display: inline-block;
 
     margin-bottom: 18px;
-
     padding: 9px 20px;
 
-    border: 1px solid rgba(255,255,255,0.4);
-
+    border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 30px;
 
     font-size: 0.78rem;
-
     font-weight: 800;
-
     letter-spacing: 3px;
 }
 
@@ -163,15 +143,12 @@ body {
     margin: 0;
 
     font-size: clamp(2.7rem, 7vw, 5rem);
-
     line-height: 1.05;
-
     font-weight: 900;
 }
 
 .truck-hero h1 span {
     display: block;
-
     color: var(--truck-orange);
 }
 
@@ -183,17 +160,13 @@ body {
     color: #ddd;
 
     font-size: 1.1rem;
-
     line-height: 1.8;
 }
 
 .hero-badges {
     display: flex;
-
     justify-content: center;
-
     flex-wrap: wrap;
-
     gap: 12px;
 }
 
@@ -202,9 +175,8 @@ body {
 
     border-radius: 30px;
 
-    background: rgba(255,255,255,0.1);
-
-    border: 1px solid rgba(255,255,255,0.18);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
 
     backdrop-filter: blur(8px);
 
@@ -226,15 +198,12 @@ body {
 
 .fleet-intro-content {
     width: min(850px, 92%);
-
     margin: auto;
 }
 
 .section-tag {
     font-size: 0.8rem;
-
     font-weight: 900;
-
     letter-spacing: 3px;
 
     color: var(--truck-orange);
@@ -244,9 +213,7 @@ body {
     margin: 12px 0;
 
     font-size: clamp(2rem, 4vw, 3.2rem);
-
     line-height: 1.2;
-
     font-weight: 900;
 }
 
@@ -269,49 +236,67 @@ body {
    TRUCK GRID
    ========================================================= */
 
-.truck-fleet {
+/*
+   IMPORTANT:
+   Your trucks.html uses:
+
+   .trucks-container
+   .truck-section
+
+   Therefore the grid must target those classes.
+*/
+
+.trucks-container {
     width: min(1250px, 92%);
 
-    margin: auto;
-
-    padding: 50px 0 90px;
+    margin: 50px auto 90px;
 
     display: grid;
 
-    grid-template-columns:
-        repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 
     gap: 35px;
+
+    align-items: start;
 }
 
 
 /* =========================================================
-   TRUCK CARD
+   TRUCK SECTION / CARD
    ========================================================= */
 
-.truck-card {
+.truck-section {
     position: relative;
 
     overflow: hidden;
+
+    width: 100%;
+
+    margin: 0;
 
     background: white;
 
     border-radius: 24px;
 
     box-shadow:
-        0 15px 45px rgba(0,0,0,0.10);
+        0 15px 45px rgba(0, 0, 0, 0.10);
 
     transition:
         transform 0.35s ease,
         box-shadow 0.35s ease;
 }
 
-.truck-card:hover {
+.truck-section:hover {
     transform: translateY(-10px);
 
     box-shadow:
-        0 25px 60px rgba(0,0,0,0.17);
+        0 25px 60px rgba(0, 0, 0, 0.17);
 }
+
+
+/* =========================================================
+   TRUCK NUMBER
+   ========================================================= */
 
 .truck-number {
     position: absolute;
@@ -336,9 +321,13 @@ body {
     color: white;
 
     font-size: 0.85rem;
-
     font-weight: 900;
 }
+
+
+/* =========================================================
+   FEATURED LABEL
+   ========================================================= */
 
 .featured-label {
     position: absolute;
@@ -357,9 +346,7 @@ body {
     color: #111;
 
     font-size: 0.7rem;
-
     font-weight: 900;
-
     letter-spacing: 1px;
 }
 
@@ -406,7 +393,6 @@ body {
     color: #111;
 
     font-size: 0.78rem;
-
     font-weight: 900;
 }
 
@@ -438,7 +424,7 @@ body {
 
     filter:
         drop-shadow(
-            0 18px 15px rgba(0,0,0,0.20)
+            0 18px 15px rgba(0, 0, 0, 0.20)
         );
 }
 
@@ -463,9 +449,7 @@ body {
     color: var(--truck-orange-dark);
 
     font-size: 0.72rem;
-
     font-weight: 900;
-
     letter-spacing: 2px;
 }
 
@@ -473,7 +457,6 @@ body {
     margin: 0 0 8px;
 
     font-size: 1.8rem;
-
     font-weight: 900;
 }
 
@@ -536,7 +519,6 @@ body {
     color: #444;
 
     font-size: 0.75rem;
-
     font-weight: 700;
 }
 
@@ -549,7 +531,6 @@ body {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     gap: 10px;
@@ -741,17 +722,37 @@ body {
    RESPONSIVE
    ========================================================= */
 
+/*
+   TABLET
+   -------
+   One truck per row below 900px.
+*/
+
 @media (max-width: 900px) {
 
     .nav-links {
         gap: 15px;
     }
 
-    .truck-fleet {
+    .trucks-container {
+        width: min(700px, 92%);
+
         grid-template-columns: 1fr;
+
+        gap: 30px;
     }
 
+    .truck-section {
+        width: 100%;
+    }
 }
+
+
+/*
+   MOBILE
+   ------
+   Exactly ONE truck at a time.
+*/
 
 @media (max-width: 650px) {
 
@@ -775,11 +776,31 @@ body {
         min-height: 430px;
     }
 
+    .trucks-container {
+        width: 94%;
+
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+
+        margin: 35px auto 60px;
+    }
+
+    .truck-section {
+        width: 100%;
+
+        margin: 0;
+    }
+
     .truck-image-area {
         height: 280px;
     }
 
     .truck-viewer {
+        width: 92%;
+
         height: 235px;
     }
 
@@ -789,5 +810,50 @@ body {
 
     .truck-controls {
         gap: 7px;
+    }
+
+    .truck-cta {
+        padding: 65px 20px;
+    }
+}
+
+
+/*
+   SMALL MOBILE
+   -------------
+*/
+
+@media (max-width: 400px) {
+
+    .trucks-container {
+        width: 95%;
+
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+    .truck-image-area {
+        height: 250px;
+    }
+
+    .truck-viewer {
+        height: 210px;
+    }
+
+    .truck-details {
+        padding: 20px;
+    }
+
+    .truck-details h2 {
+        font-size: 1.5rem;
+    }
+
+    .capacity strong {
+        font-size: 2rem;
+    }
+
+    .nav-links {
+        gap: 10px 14px;
     }
 }
