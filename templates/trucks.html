@@ -1,1043 +1,1005 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description"
-        content="Vinayaka Stone Crusher - Reliable heavy-duty trucks for construction material delivery across Karnataka.">
+```
+<meta name="description"
+    content="Vinayaka Stone Crusher - Reliable heavy-duty trucks for construction material delivery across Karnataka.">
 
-    <title>Our Trucks | Vinayaka Stone Crusher</title>
+<title>Our Trucks | Vinayaka Stone Crusher</title>
 
-    <link rel="stylesheet"
-        href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
 
-    <link rel="stylesheet"
-        href="{{ url_for('static', filename='css/trucks.css') }}">
+<link rel="stylesheet"
+    href="{{ url_for('static', filename='css/trucks.css') }}">
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<style>
+    * {
+        box-sizing: border-box;
+    }
 
-        body {
-            margin: 0;
-            padding: 0;
-            background: #080808;
-            color: white;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+    body {
+        margin: 0;
+        padding: 0;
+        background: #080808;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+    }
 
-        /* NAVBAR */
+    /* NAVBAR */
+    .navbar {
+        width: 100%;
+        padding: 18px 7%;
+        background: rgba(0, 0, 0, 0.95);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 1px solid rgba(255, 120, 0, 0.3);
+    }
+
+    .logo {
+        color: #ff7200;
+        font-size: 25px;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 28px;
+    }
+
+    .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+        color: #ff7200;
+    }
+
+    /* HEADER */
+    .truck-header {
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 60px 20px 40px;
+        background:
+            linear-gradient(rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.9)),
+            url("{{ url_for('static', filename='images/crusher.jpg') }}")
+            center/cover no-repeat;
+    }
+
+    .truck-header h1 {
+        font-size: clamp(38px, 6vw, 70px);
+        margin: 0;
+        color: #ff7200;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+    }
+
+    .truck-header p {
+        max-width: 800px;
+        font-size: 18px;
+        line-height: 1.7;
+        color: #ddd;
+    }
+
+    /* MAIN */
+    .trucks-container {
+        width: 92%;
+        max-width: 1250px;
+        margin: 50px auto;
+    }
+
+    /* TRUCK CARD */
+    .truck-section {
+        margin-bottom: 70px;
+        padding: 30px;
+        background: linear-gradient(
+            145deg,
+            #151515,
+            #090909
+        );
+        border: 1px solid rgba(255, 114, 0, 0.35);
+        border-radius: 20px;
+        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6);
+    }
+
+    .truck-title {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .truck-title h2 {
+        color: #ff7200;
+        font-size: 32px;
+        margin: 0 0 8px;
+    }
+
+    .truck-title p {
+        margin: 0;
+        color: #bbb;
+        font-size: 17px;
+    }
+
+    /* VIEWER */
+    .truck-viewer {
+        width: 100%;
+        max-width: 950px;
+        margin: auto;
+        position: relative;
+        overflow: hidden;
+        border-radius: 18px;
+        background: #111;
+        border: 2px solid rgba(255, 114, 0, 0.25);
+        min-height: 450px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .main-truck-image {
+        width: 100%;
+        max-width: 900px;
+        height: 500px;
+        object-fit: contain;
+        display: block;
+        user-select: none;
+        -webkit-user-drag: none;
+        cursor: grab;
+        transition: opacity 0.25s ease;
+    }
+
+    .main-truck-image:active {
+        cursor: grabbing;
+    }
+
+    /* CONTROLS */
+    .truck-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 20px;
+    }
+
+    .truck-btn {
+        border: none;
+        outline: none;
+        padding: 12px 22px;
+        border-radius: 30px;
+        background: #ff7200;
+        color: white;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .truck-btn:hover {
+        background: #ff8c24;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(255, 114, 0, 0.35);
+    }
+
+    .truck-btn.secondary {
+        background: #222;
+        border: 1px solid #ff7200;
+    }
+
+    .truck-btn.secondary:hover {
+        background: #ff7200;
+    }
+
+    /* VIEW COUNTER */
+    .view-counter {
+        text-align: center;
+        color: #aaa;
+        margin-top: 15px;
+        font-size: 14px;
+    }
+
+    /* INFO */
+    .truck-info {
+        text-align: center;
+        max-width: 850px;
+        margin: 25px auto 0;
+        color: #ccc;
+        line-height: 1.7;
+    }
+
+    /* FOOTER */
+    footer {
+        background: #050505;
+        padding: 35px 20px;
+        text-align: center;
+        border-top: 1px solid rgba(255, 114, 0, 0.3);
+        color: #aaa;
+    }
+
+    footer strong {
+        color: #ff7200;
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+
         .navbar {
-            width: 100%;
-            padding: 18px 7%;
-            background: rgba(0, 0, 0, 0.95);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 120, 0, 0.3);
-        }
-
-        .logo {
-            color: #ff7200;
-            font-size: 25px;
-            font-weight: bold;
-            text-decoration: none;
+            padding: 15px 5%;
+            flex-direction: column;
+            gap: 15px;
         }
 
         .nav-links {
-            display: flex;
-            gap: 28px;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: #ff7200;
-        }
-
-        /* HEADER */
-        .truck-header {
-            min-height: 300px;
-            display: flex;
-            flex-direction: column;
+            gap: 15px;
+            flex-wrap: wrap;
             justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 60px 20px 40px;
-            background:
-                linear-gradient(rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.9)),
-                url("{{ url_for('static', filename='images/crusher.jpg') }}")
-                center/cover no-repeat;
         }
 
-        .truck-header h1 {
-            font-size: clamp(38px, 6vw, 70px);
-            margin: 0;
-            color: #ff7200;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-
-        .truck-header p {
-            max-width: 800px;
-            font-size: 18px;
-            line-height: 1.7;
-            color: #ddd;
-        }
-
-        /* MAIN */
-        .trucks-container {
-            width: 92%;
-            max-width: 1250px;
-            margin: 50px auto;
-        }
-
-        /* TRUCK CARD */
         .truck-section {
-            margin-bottom: 70px;
-            padding: 30px;
-            background: linear-gradient(
-                145deg,
-                #151515,
-                #090909
-            );
-            border: 1px solid rgba(255, 114, 0, 0.35);
-            border-radius: 20px;
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6);
+            padding: 18px;
         }
 
-        .truck-title {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .truck-title h2 {
-            color: #ff7200;
-            font-size: 32px;
-            margin: 0 0 8px;
-        }
-
-        .truck-title p {
-            margin: 0;
-            color: #bbb;
-            font-size: 17px;
-        }
-
-        /* VIEWER */
         .truck-viewer {
-            width: 100%;
-            max-width: 950px;
-            margin: auto;
-            position: relative;
-            overflow: hidden;
-            border-radius: 18px;
-            background: #111;
-            border: 2px solid rgba(255, 114, 0, 0.25);
-            min-height: 450px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            min-height: 300px;
         }
 
         .main-truck-image {
-            width: 100%;
-            max-width: 900px;
-            height: 500px;
-            object-fit: contain;
-            display: block;
-            user-select: none;
-            -webkit-user-drag: none;
-            cursor: grab;
-            transition: opacity 0.25s ease;
+            height: 330px;
         }
 
-        .main-truck-image:active {
-            cursor: grabbing;
+        .truck-title h2 {
+            font-size: 25px;
         }
 
-        /* CONTROLS */
-        .truck-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 20px;
+        .truck-header {
+            min-height: 250px;
         }
+    }
+</style>
+```
 
-        .truck-btn {
-            border: none;
-            outline: none;
-            padding: 12px 22px;
-            border-radius: 30px;
-            background: #ff7200;
-            color: white;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .truck-btn:hover {
-            background: #ff8c24;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(255, 114, 0, 0.35);
-        }
-
-        .truck-btn.secondary {
-            background: #222;
-            border: 1px solid #ff7200;
-        }
-
-        .truck-btn.secondary:hover {
-            background: #ff7200;
-        }
-
-        /* VIEW COUNTER */
-        .view-counter {
-            text-align: center;
-            color: #aaa;
-            margin-top: 15px;
-            font-size: 14px;
-        }
-
-        /* INFO */
-        .truck-info {
-            text-align: center;
-            max-width: 850px;
-            margin: 25px auto 0;
-            color: #ccc;
-            line-height: 1.7;
-        }
-
-        /* FOOTER */
-        footer {
-            background: #050505;
-            padding: 35px 20px;
-            text-align: center;
-            border-top: 1px solid rgba(255, 114, 0, 0.3);
-            color: #aaa;
-        }
-
-        footer strong {
-            color: #ff7200;
-        }
-
-        /* MOBILE */
-        @media (max-width: 768px) {
-
-            .navbar {
-                padding: 15px 5%;
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .nav-links {
-                gap: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .truck-section {
-                padding: 18px;
-            }
-
-            .truck-viewer {
-                min-height: 300px;
-            }
-
-            .main-truck-image {
-                height: 330px;
-            }
-
-            .truck-title h2 {
-                font-size: 25px;
-            }
-
-            .truck-header {
-                min-height: 250px;
-            }
-        }
-    </style>
 </head>
 
 <body>
 
-    <!-- ================= NAVBAR ================= -->
+```
+<!-- ================= NAVBAR ================= -->
 
-    <nav class="navbar">
+<nav class="navbar">
 
-        <a href="{{ url_for('index') }}" class="logo">
-            VINAYAKA STONE CRUSHER
+    <a href="{{ url_for('index') }}" class="logo">
+        VINAYAKA STONE CRUSHER
+    </a>
+
+    <div class="nav-links">
+
+        <a href="{{ url_for('index') }}">
+            Home
         </a>
 
-        <div class="nav-links">
+        <a href="{{ url_for('about') }}">
+            About
+        </a>
 
-            <a href="{{ url_for('index') }}">
-                Home
-            </a>
+        <a href="{{ url_for('materials') }}">
+            Materials
+        </a>
 
-            <a href="{{ url_for('about') }}">
-                About
-            </a>
+        <a href="{{ url_for('trucks') }}" class="active">
+            Trucks
+        </a>
 
-            <a href="{{ url_for('materials') }}">
-                Materials
-            </a>
+        <a href="{{ url_for('contact') }}">
+            Contact
+        </a>
 
-            <a href="{{ url_for('trucks') }}" class="active">
-                Trucks
-            </a>
+    </div>
 
-            <a href="{{ url_for('contact') }}">
-                Contact
-            </a>
+</nav>
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="truck-header">
+
+    <h1>Our Truck Fleet</h1>
+
+    <p>
+        Reliable heavy-duty vehicles for transporting construction
+        materials safely and efficiently across Karnataka.
+    </p>
+
+</header>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="trucks-container">
+
+
+    <!-- =====================================================
+         10 WHEEL LORRY
+    ====================================================== -->
+
+    <section class="truck-section">
+
+        <div class="truck-title">
+
+            <h2>10 Wheel Lorry</h2>
+
+            <p>
+                Capacity: <strong>28 Tons</strong>
+            </p>
 
         </div>
 
-    </nav>
+
+        <div class="truck-viewer" id="viewer10">
+
+            <img
+                id="truck10Main"
+                class="main-truck-image"
+                src="{{ url_for('static', filename='trucks/10wheel/front.png') }}"
+                alt="10 Wheel Lorry"
+                draggable="false"
+            >
+
+        </div>
 
 
-    <!-- ================= HEADER ================= -->
+        <div class="truck-controls">
 
-    <header class="truck-header">
+            <button
+                class="truck-btn"
+                onclick="previousTruck('truck10Main')">
+                ◀ Previous
+            </button>
 
-        <h1>Our Truck Fleet</h1>
+            <button
+                class="truck-btn"
+                onclick="nextTruck('truck10Main')">
+                Next ▶
+            </button>
 
-        <p>
-            Reliable heavy-duty vehicles for transporting construction
-            materials safely and efficiently across Karnataka.
+            <button
+                class="truck-btn secondary"
+                id="rotate10"
+                onclick="toggleAutoRotate('truck10Main')">
+                🔄 Auto Rotate
+            </button>
+
+        </div>
+
+
+        <div class="view-counter">
+            View <span id="counter-truck10Main">1 / 5</span>
+        </div>
+
+
+        <p class="truck-info">
+            Our 10 wheel heavy-duty lorry is suitable for transporting
+            large quantities of construction materials including sand,
+            M-Sand, aggregates and stones.
         </p>
 
-    </header>
+    </section>
 
 
-    <!-- ================= MAIN ================= -->
 
-    <main class="trucks-container">
+    <!-- =====================================================
+         12 WHEEL LORRY
+    ====================================================== -->
 
+    <section class="truck-section">
 
-        <!-- =====================================================
-             10 WHEEL LORRY
-        ====================================================== -->
+        <div class="truck-title">
 
-        <section class="truck-section">
+            <h2>12 Wheel Lorry</h2>
 
-            <div class="truck-title">
-
-                <h2>10 Wheel Lorry</h2>
-
-                <p>
-                    Capacity: <strong>28 Tons</strong>
-                </p>
-
-            </div>
-
-
-            <div class="truck-viewer" id="viewer10">
-
-                <img
-                    id="truck10Main"
-                    class="main-truck-image"
-                    src="{{ url_for('static', filename='trucks/10wheel/front.png') }}"
-                    alt="10 Wheel Lorry"
-                    draggable="false"
-                >
-
-            </div>
-
-
-            <div class="truck-controls">
-
-                <button
-                    class="truck-btn"
-                    onclick="previousTruck('truck10Main')">
-                    ◀ Previous
-                </button>
-
-                <button
-                    class="truck-btn"
-                    onclick="nextTruck('truck10Main')">
-                    Next ▶
-                </button>
-
-                <button
-                    class="truck-btn secondary"
-                    id="rotate10"
-                    onclick="toggleAutoRotate('truck10Main')">
-                    🔄 Auto Rotate
-                </button>
-
-            </div>
-
-
-            <div class="view-counter">
-                View <span id="counter-truck10Main">1 / 5</span>
-            </div>
-
-
-            <p class="truck-info">
-                Our 10 wheel heavy-duty lorry is suitable for transporting
-                large quantities of construction materials including sand,
-                M-Sand, aggregates and stones.
+            <p>
+                Heavy-Duty Transport
             </p>
 
-        </section>
+        </div>
 
 
+        <div class="truck-viewer" id="viewer12">
 
-        <!-- =====================================================
-             12 WHEEL LORRY
-        ====================================================== -->
+            <img
+                id="truck12Main"
+                class="main-truck-image"
+                src="{{ url_for('static', filename='trucks/12wheel/front.png') }}"
+                alt="12 Wheel Lorry"
+                draggable="false"
+            >
 
-        <section class="truck-section">
+        </div>
 
-            <div class="truck-title">
 
-                <h2>12 Wheel Lorry</h2>
+        <div class="truck-controls">
 
-                <p>
-                    Heavy-Duty Transport
-                </p>
+            <button
+                class="truck-btn"
+                onclick="previousTruck('truck12Main')">
+                ◀ Previous
+            </button>
 
-            </div>
+            <button
+                class="truck-btn"
+                onclick="nextTruck('truck12Main')">
+                Next ▶
+            </button>
 
+            <button
+                class="truck-btn secondary"
+                id="rotate12"
+                onclick="toggleAutoRotate('truck12Main')">
+                🔄 Auto Rotate
+            </button>
 
-            <div class="truck-viewer" id="viewer12">
+        </div>
 
-                <img
-                    id="truck12Main"
-                    class="main-truck-image"
-                    src="{{ url_for('static', filename='trucks/12wheel/front.png') }}"
-                    alt="12 Wheel Lorry"
-                    draggable="false"
-                >
 
-            </div>
+        <div class="view-counter">
+            View <span id="counter-truck12Main">1 / 5</span>
+        </div>
 
 
-            <div class="truck-controls">
-
-                <button
-                    class="truck-btn"
-                    onclick="previousTruck('truck12Main')">
-                    ◀ Previous
-                </button>
-
-                <button
-                    class="truck-btn"
-                    onclick="nextTruck('truck12Main')">
-                    Next ▶
-                </button>
-
-                <button
-                    class="truck-btn secondary"
-                    id="rotate12"
-                    onclick="toggleAutoRotate('truck12Main')">
-                    🔄 Auto Rotate
-                </button>
-
-            </div>
-
-
-            <div class="view-counter">
-                View <span id="counter-truck12Main">1 / 5</span>
-            </div>
-
-
-            <p class="truck-info">
-                Our 12 wheel lorry is designed for heavy-duty construction
-                material transportation and long-distance deliveries.
-            </p>
-
-        </section>
-
-
-
-        <!-- =====================================================
-             6 WHEEL LP - 18 TONS
-        ====================================================== -->
-
-        <section class="truck-section">
-
-            <div class="truck-title">
-
-                <h2>6 Wheel Lorry – LP</h2>
-
-                <p>
-                    Capacity: <strong>18 Tons</strong>
-                </p>
-
-            </div>
-
-
-            <div class="truck-viewer" id="viewerLP">
-
-                <img
-                    id="truckLPMain"
-                    class="main-truck-image"
-                    src="{{ url_for('static', filename='trucks/6wheel_LP/front.png') }}"
-                    alt="6 Wheel LP Lorry"
-                    draggable="false"
-                >
-
-            </div>
-
-
-            <div class="truck-controls">
-
-                <button
-                    class="truck-btn"
-                    onclick="previousTruck('truckLPMain')">
-                    ◀ Previous
-                </button>
-
-                <button
-                    class="truck-btn"
-                    onclick="nextTruck('truckLPMain')">
-                    Next ▶
-                </button>
-
-                <button
-                    class="truck-btn secondary"
-                    id="rotateLP"
-                    onclick="toggleAutoRotate('truckLPMain')">
-                    🔄 Auto Rotate
-                </button>
-
-            </div>
-
-
-            <div class="view-counter">
-                View <span id="counter-truckLPMain">1 / 5</span>
-            </div>
-
-
-            <p class="truck-info">
-                The 6 wheel LP lorry provides dependable transportation
-                for medium and large construction material orders.
-            </p>
-
-        </section>
-
-
-
-        <!-- =====================================================
-             6 WHEEL SC - 14 TONS
-        ====================================================== -->
-
-        <section class="truck-section">
-
-            <div class="truck-title">
-
-                <h2>6 Wheel Lorry – SC</h2>
-
-                <p>
-                    Capacity: <strong>14 Tons</strong>
-                </p>
-
-            </div>
-
-
-            <div class="truck-viewer" id="viewerSC">
-
-                <img
-                    id="truckSCMain"
-                    class="main-truck-image"
-                    src="{{ url_for('static', filename='trucks/6wheel_SC/side.png') }}"
-                    alt="6 Wheel SC Lorry - 14 Tons"
-                    draggable="false"
-                >
-
-            </div>
-
-
-            <div class="truck-controls">
-
-                <button
-                    class="truck-btn"
-                    onclick="previousTruck('truckSCMain')">
-                    ◀ Previous
-                </button>
-
-                <button
-                    class="truck-btn"
-                    onclick="nextTruck('truckSCMain')">
-                    Next ▶
-                </button>
-
-                <button
-                    class="truck-btn secondary"
-                    id="rotateSC"
-                    onclick="toggleAutoRotate('truckSCMain')">
-                    🔄 Auto Rotate
-                </button>
-
-            </div>
-
-
-            <div class="view-counter">
-                View <span id="counter-truckSCMain">1 / 4</span>
-            </div>
-
-
-            <p class="truck-info">
-                Our 6 wheel SC lorry can carry up to 14 tons and is suitable
-                for efficient transportation of construction materials.
-            </p>
-
-        </section>
-
-
-
-        <!-- =====================================================
-             709 LORRY - 8 TONS
-        ====================================================== -->
-
-        <section class="truck-section">
-
-            <div class="truck-title">
-
-                <h2>709 Lorry</h2>
-
-                <p>
-                    Capacity: <strong>8 Tons</strong>
-                </p>
-
-            </div>
-
-
-            <div class="truck-viewer" id="viewer709">
-
-                <img
-                    id="truck709Main"
-                    class="main-truck-image"
-                    src="{{ url_for('static', filename='trucks/709/front - Copy.png') }}"
-                    alt="709 Lorry"
-                    draggable="false"
-                >
-
-            </div>
-
-
-            <div class="truck-controls">
-
-                <button
-                    class="truck-btn"
-                    onclick="previousTruck('truck709Main')">
-                    ◀ Previous
-                </button>
-
-                <button
-                    class="truck-btn"
-                    onclick="nextTruck('truck709Main')">
-                    Next ▶
-                </button>
-
-                <button
-                    class="truck-btn secondary"
-                    id="rotate709"
-                    onclick="toggleAutoRotate('truck709Main')">
-                    🔄 Auto Rotate
-                </button>
-
-            </div>
-
-
-            <div class="view-counter">
-                View <span id="counter-truck709Main">1 / 5</span>
-            </div>
-
-
-            <p class="truck-info">
-                The 709 lorry is suitable for smaller construction material
-                deliveries with a carrying capacity of up to 8 tons.
-            </p>
-
-        </section>
-
-
-    </main>
-
-
-    <!-- ================= FOOTER ================= -->
-
-    <footer>
-
-        <p>
-            © 2026
-            <strong>Vinayaka Stone Crusher</strong>.
-            All Rights Reserved.
+        <p class="truck-info">
+            Our 12 wheel lorry is designed for heavy-duty construction
+            material transportation and long-distance deliveries.
         </p>
 
-    </footer>
+    </section>
 
 
 
-    <!-- =========================================================
-         JAVASCRIPT
-    ========================================================== -->
+    <!-- =====================================================
+         6 WHEEL LP - 18 TONS
+    ====================================================== -->
 
-    <script>
+    <section class="truck-section">
+
+        <div class="truck-title">
+
+            <h2>6 Wheel Lorry – LP</h2>
+
+            <p>
+                Capacity: <strong>18 Tons</strong>
+            </p>
+
+        </div>
+
+
+        <div class="truck-viewer" id="viewerLP">
+
+            <img
+                id="truckLPMain"
+                class="main-truck-image"
+                src="{{ url_for('static', filename='trucks/6wheel_LP/front.png') }}"
+                alt="6 Wheel LP Lorry"
+                draggable="false"
+            >
+
+        </div>
+
+
+        <div class="truck-controls">
+
+            <button
+                class="truck-btn"
+                onclick="previousTruck('truckLPMain')">
+                ◀ Previous
+            </button>
+
+            <button
+                class="truck-btn"
+                onclick="nextTruck('truckLPMain')">
+                Next ▶
+            </button>
+
+            <button
+                class="truck-btn secondary"
+                id="rotateLP"
+                onclick="toggleAutoRotate('truckLPMain')">
+                🔄 Auto Rotate
+            </button>
+
+        </div>
+
+
+        <div class="view-counter">
+            View <span id="counter-truckLPMain">1 / 5</span>
+        </div>
+
+
+        <p class="truck-info">
+            The 6 wheel LP lorry provides dependable transportation
+            for medium and large construction material orders.
+        </p>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         6 WHEEL SC - 14 TONS
+    ====================================================== -->
+
+    <section class="truck-section">
+
+        <div class="truck-title">
+
+            <h2>6 Wheel Lorry – SC</h2>
+
+            <p>
+                Capacity: <strong>14 Tons</strong>
+            </p>
+
+        </div>
+
+
+        <div class="truck-viewer" id="viewerSC">
+
+            <img
+                id="truckSCMain"
+                class="main-truck-image"
+                src="{{ url_for('static', filename='trucks/6wheel_SC/side.png') }}"
+                alt="6 Wheel SC Lorry - 14 Tons"
+                draggable="false"
+            >
+
+        </div>
+
+
+        <div class="truck-controls">
+
+            <button
+                class="truck-btn"
+                onclick="previousTruck('truckSCMain')">
+                ◀ Previous
+            </button>
+
+            <button
+                class="truck-btn"
+                onclick="nextTruck('truckSCMain')">
+                Next ▶
+            </button>
+
+            <button
+                class="truck-btn secondary"
+                id="rotateSC"
+                onclick="toggleAutoRotate('truckSCMain')">
+                🔄 Auto Rotate
+            </button>
+
+        </div>
+
+
+        <div class="view-counter">
+            View <span id="counter-truckSCMain">1 / 4</span>
+        </div>
+
+
+        <p class="truck-info">
+            Our 6 wheel SC lorry can carry up to 14 tons and is suitable
+            for efficient transportation of construction materials.
+        </p>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         709 LORRY - 8 TONS
+    ====================================================== -->
+
+    <section class="truck-section">
+
+        <div class="truck-title">
+
+            <h2>709 Lorry</h2>
+
+            <p>
+                Capacity: <strong>8 Tons</strong>
+            </p>
+
+        </div>
+
+
+        <div class="truck-viewer" id="viewer709">
+
+            <img
+                id="truck709Main"
+                class="main-truck-image"
+                src="{{ url_for('static', filename='trucks/709/front.png') }}"
+                alt="709 Lorry"
+                draggable="false"
+            >
+
+        </div>
+
+
+        <div class="truck-controls">
+
+            <button
+                class="truck-btn"
+                onclick="previousTruck('truck709Main')">
+                ◀ Previous
+            </button>
+
+            <button
+                class="truck-btn"
+                onclick="nextTruck('truck709Main')">
+                Next ▶
+            </button>
+
+            <button
+                class="truck-btn secondary"
+                id="rotate709"
+                onclick="toggleAutoRotate('truck709Main')">
+                🔄 Auto Rotate
+            </button>
+
+        </div>
+
+
+        <div class="view-counter">
+            View <span id="counter-truck709Main">1 / 5</span>
+        </div>
+
+
+        <p class="truck-info">
+            The 709 lorry is suitable for smaller construction material
+            deliveries with a carrying capacity of up to 8 tons.
+        </p>
+
+    </section>
+
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+        © 2026
+        <strong>Vinayaka Stone Crusher</strong>.
+        All Rights Reserved.
+    </p>
+
+</footer>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================== -->
+
+<script>
+
+    /*
+    ============================================================
+    TRUCK IMAGE LIST
+    ============================================================
+    */
+
+    const truckViews = {
+
+        truck10Main: [
+
+            "{{ url_for('static', filename='trucks/10wheel/front.png') }}",
+
+            "{{ url_for('static', filename='trucks/10wheel/side_left.png') }}",
+
+            "{{ url_for('static', filename='trucks/10wheel/back.png') }}",
+
+            "{{ url_for('static', filename='trucks/10wheel/side_right.png') }}",
+
+            "{{ url_for('static', filename='trucks/10wheel/front.png') }}"
+
+        ],
+
+
+        truck12Main: [
+
+            "{{ url_for('static', filename='trucks/12wheel/front.png') }}",
+
+            "{{ url_for('static', filename='trucks/12wheel/side_left.png') }}",
+
+            "{{ url_for('static', filename='trucks/12wheel/back.png') }}",
+
+            "{{ url_for('static', filename='trucks/12wheel/side_right.png') }}",
+
+            "{{ url_for('static', filename='trucks/12wheel/front.png') }}"
+
+        ],
+
+
+        truckLPMain: [
+
+            "{{ url_for('static', filename='trucks/6wheel_LP/front.png') }}",
+
+            "{{ url_for('static', filename='trucks/6wheel_LP/side_left.png') }}",
+
+            "{{ url_for('static', filename='trucks/6wheel_LP/back.png') }}",
+
+            "{{ url_for('static', filename='trucks/6wheel_LP/side_right.png') }}",
+
+            "{{ url_for('static', filename='trucks/6wheel_LP/front.png') }}"
+
+        ],
+
 
         /*
-        ============================================================
-        TRUCK IMAGE LIST
-        ============================================================
+        ========================================================
+        6 WHEEL SC - 14 TONS
+        ========================================================
         */
 
-        const truckViews = {
+        truckSCMain: [
 
-            truck10Main: [
+            "{{ url_for('static', filename='trucks/6wheel_SC/side.png') }}",
 
-                "{{ url_for('static', filename='trucks/10wheel/front.png') }}",
+            "{{ url_for('static', filename='trucks/6wheel_SC/side1.png') }}",
 
-                "{{ url_for('static', filename='trucks/10wheel/side_left.png') }}",
+            "{{ url_for('static', filename='trucks/6wheel_SC/side2.png') }}",
 
-                "{{ url_for('static', filename='trucks/10wheel/back.png') }}",
+            "{{ url_for('static', filename='trucks/6wheel_SC/top.png') }}"
 
-                "{{ url_for('static', filename='trucks/10wheel/side_right.png') }}",
-
-                "{{ url_for('static', filename='trucks/10wheel/front.png') }}"
-
-            ],
-
-
-            truck12Main: [
-
-                "{{ url_for('static', filename='trucks/12wheel/front.png') }}",
-
-                "{{ url_for('static', filename='trucks/12wheel/side_left.png') }}",
-
-                "{{ url_for('static', filename='trucks/12wheel/back.png') }}",
-
-                "{{ url_for('static', filename='trucks/12wheel/side_right.png') }}",
-
-                "{{ url_for('static', filename='trucks/12wheel/front.png') }}"
-
-            ],
-
-
-            truckLPMain: [
-
-                "{{ url_for('static', filename='trucks/6wheel_LP/front.png') }}",
-
-                "{{ url_for('static', filename='trucks/6wheel_LP/side_left.png') }}",
-
-                "{{ url_for('static', filename='trucks/6wheel_LP/back.png') }}",
-
-                "{{ url_for('static', filename='trucks/6wheel_LP/side_right.png') }}",
-
-                "{{ url_for('static', filename='trucks/6wheel_LP/front.png') }}"
-
-            ],
-
-
-            /*
-            ========================================================
-            6 WHEEL SC - 14 TONS
-            ========================================================
-            */
-
-            truckSCMain: [
-
-                "{{ url_for('static', filename='trucks/6wheel_SC/side.png') }}",
-
-                "{{ url_for('static', filename='trucks/6wheel_SC/side1.png') }}",
-
-                "{{ url_for('static', filename='trucks/6wheel_SC/side2.png') }}",
-
-                "{{ url_for('static', filename='trucks/6wheel_SC/top.png') }}"
-
-            ],
-
-
-            /*
-            ========================================================
-            709 - EXACT FILENAMES FROM YOUR FOLDER
-            ========================================================
-            */
-
-            truck709Main: [
-
-                "{{ url_for('static', filename='trucks/709/front - Copy.png') }}",
-
-                "{{ url_for('static', filename='trucks/709/side_right - Copy.png') }}",
-
-                "{{ url_for('static', filename='trucks/709/back - Copy.png') }}",
-
-                "{{ url_for('static', filename='trucks/709/side_left - Copy.png') }}",
-
-                "{{ url_for('static', filename='trucks/709/angled - Copy.png') }}"
-
-            ]
-
-        };
+        ],
 
 
         /*
-        ============================================================
-        CURRENT IMAGE
-        ============================================================
+        ========================================================
+        709 - 8 TONS
+        ========================================================
         */
 
-        const currentView = {
+        truck709Main: [
 
-            truck10Main: 0,
+            "{{ url_for('static', filename='trucks/709/front.png') }}",
 
-            truck12Main: 0,
+            "{{ url_for('static', filename='trucks/709/side_right.png') }}",
 
-            truckLPMain: 0,
+            "{{ url_for('static', filename='trucks/709/back.png') }}",
 
-            truckSCMain: 0,
+            "{{ url_for('static', filename='trucks/709/side_left.png') }}",
 
-            truck709Main: 0
+            "{{ url_for('static', filename='trucks/709/angled.png') }}"
 
-        };
+        ]
 
-
-        /*
-        ============================================================
-        AUTO ROTATE TIMERS
-        ============================================================
-        */
-
-        const autoRotateTimers = {};
+    };
 
 
-        /*
-        ============================================================
-        BUTTON MAP
-        ============================================================
-        */
+    /*
+    ============================================================
+    CURRENT IMAGE
+    ============================================================
+    */
 
-        const buttonMap = {
+    const currentView = {
 
-            truck10Main: "rotate10",
+        truck10Main: 0,
 
-            truck12Main: "rotate12",
+        truck12Main: 0,
 
-            truckLPMain: "rotateLP",
+        truckLPMain: 0,
 
-            truckSCMain: "rotateSC",
+        truckSCMain: 0,
 
-            truck709Main: "rotate709"
+        truck709Main: 0
 
-        };
-
-
-        /*
-        ============================================================
-        SHOW TRUCK IMAGE
-        ============================================================
-        */
-
-        function showTruck(truckId, index) {
-
-            const images = truckViews[truckId];
-
-            if (!images || images.length === 0) {
-                return;
-            }
+    };
 
 
-            if (index < 0) {
-                index = images.length - 1;
-            }
+    /*
+    ============================================================
+    AUTO ROTATE TIMERS
+    ============================================================
+    */
+
+    const autoRotateTimers = {};
 
 
-            if (index >= images.length) {
-                index = 0;
-            }
+    /*
+    ============================================================
+    BUTTON MAP
+    ============================================================
+    */
+
+    const buttonMap = {
+
+        truck10Main: "rotate10",
+
+        truck12Main: "rotate12",
+
+        truckLPMain: "rotateLP",
+
+        truckSCMain: "rotateSC",
+
+        truck709Main: "rotate709"
+
+    };
 
 
-            currentView[truckId] = index;
+    /*
+    ============================================================
+    SHOW TRUCK IMAGE
+    ============================================================
+    */
+
+    function showTruck(truckId, index) {
+
+        const images = truckViews[truckId];
+
+        if (!images || images.length === 0) {
+            return;
+        }
 
 
-            const image = document.getElementById(truckId);
-
-            if (!image) {
-                return;
-            }
+        if (index < 0) {
+            index = images.length - 1;
+        }
 
 
-            image.style.opacity = "0.35";
+        if (index >= images.length) {
+            index = 0;
+        }
 
 
-            setTimeout(function () {
-
-                image.src = images[index];
-
-                image.onload = function () {
-
-                    image.style.opacity = "1";
-
-                };
-
-            }, 100);
+        currentView[truckId] = index;
 
 
-            const counter = document.getElementById(
-                "counter-" + truckId
+        const image = document.getElementById(truckId);
+
+        if (!image) {
+            return;
+        }
+
+
+        image.style.opacity = "0.35";
+
+
+        setTimeout(function () {
+
+            image.src = images[index];
+
+            image.onload = function () {
+
+                image.style.opacity = "1";
+
+            };
+
+            image.onerror = function () {
+
+                image.style.opacity = "1";
+
+                console.error(
+                    "Unable to load truck image:",
+                    images[index]
+                );
+
+            };
+
+        }, 100);
+
+
+        const counter = document.getElementById(
+            "counter-" + truckId
+        );
+
+
+        if (counter) {
+
+            counter.textContent =
+                (index + 1) + " / " + images.length;
+
+        }
+
+    }
+
+
+    /*
+    ============================================================
+    NEXT IMAGE
+    ============================================================
+    */
+
+    function nextTruck(truckId) {
+
+        const images = truckViews[truckId];
+
+        if (!images) {
+            return;
+        }
+
+
+        const nextIndex =
+            (currentView[truckId] + 1) % images.length;
+
+
+        showTruck(truckId, nextIndex);
+
+    }
+
+
+    /*
+    ============================================================
+    PREVIOUS IMAGE
+    ============================================================
+    */
+
+    function previousTruck(truckId) {
+
+        const images = truckViews[truckId];
+
+        if (!images) {
+            return;
+        }
+
+
+        let previousIndex =
+            currentView[truckId] - 1;
+
+
+        if (previousIndex < 0) {
+
+            previousIndex =
+                images.length - 1;
+
+        }
+
+
+        showTruck(truckId, previousIndex);
+
+    }
+
+
+    /*
+    ============================================================
+    AUTO ROTATE
+    ============================================================
+    */
+
+    function toggleAutoRotate(truckId) {
+
+        const buttonId =
+            buttonMap[truckId];
+
+
+        const button =
+            document.getElementById(buttonId);
+
+
+        if (autoRotateTimers[truckId]) {
+
+            clearInterval(
+                autoRotateTimers[truckId]
             );
 
 
-            if (counter) {
-
-                counter.textContent =
-                    (index + 1) + " / " + images.length;
-
-            }
-
-        }
-
-
-        /*
-        ============================================================
-        NEXT IMAGE
-        ============================================================
-        */
-
-        function nextTruck(truckId) {
-
-            const images = truckViews[truckId];
-
-            if (!images) {
-                return;
-            }
-
-
-            const nextIndex =
-                (currentView[truckId] + 1) % images.length;
-
-
-            showTruck(truckId, nextIndex);
-
-        }
-
-
-        /*
-        ============================================================
-        PREVIOUS IMAGE
-        ============================================================
-        */
-
-        function previousTruck(truckId) {
-
-            const images = truckViews[truckId];
-
-            if (!images) {
-                return;
-            }
-
-
-            let previousIndex =
-                currentView[truckId] - 1;
-
-
-            if (previousIndex < 0) {
-
-                previousIndex =
-                    images.length - 1;
-
-            }
-
-
-            showTruck(truckId, previousIndex);
-
-        }
-
-
-        /*
-        ============================================================
-        AUTO ROTATE
-        ============================================================
-        */
-
-        function toggleAutoRotate(truckId) {
-
-            const buttonId =
-                buttonMap[truckId];
-
-            const button =
-                document.getElementById(buttonId);
-
-
-            if (autoRotateTimers[truckId]) {
-
-                clearInterval(
-                    autoRotateTimers[truckId]
-                );
-
-                autoRotateTimers[truckId] = null;
-
-
-                if (button) {
-
-                    button.innerHTML =
-                        "🔄 Auto Rotate";
-
-                }
-
-            }
-
-            else {
-
-                autoRotateTimers[truckId] =
-                    setInterval(function () {
-
-                        nextTruck(truckId);
-
-                    }, 1800);
-
-
-                if (button) {
-
-                    button.innerHTML =
-                        "⏸ Stop Rotation";
-
-                }
-
-            }
-
-        }
-
-
-        /*
-        ============================================================
-        STOP AUTO ROTATE
-        ============================================================
-        */
-
-        function stopAutoRotate(truckId) {
-
-            if (autoRotateTimers[truckId]) {
-
-                clearInterval(
-                    autoRotateTimers[truckId]
-                );
-
-                autoRotateTimers[truckId] = null;
-
-            }
-
-
-            const button =
-                document.getElementById(
-                    buttonMap[truckId]
-                );
+            autoRotateTimers[truckId] = null;
 
 
             if (button) {
@@ -1049,255 +1011,314 @@
 
         }
 
+        else {
 
-        /*
-        ============================================================
-        DRAG / SWIPE ROTATION
-        ============================================================
-        */
+            autoRotateTimers[truckId] =
+                setInterval(function () {
 
-        function enableDrag(viewerId, truckId) {
+                    nextTruck(truckId);
 
-            const viewer =
-                document.getElementById(viewerId);
-
-            const image =
-                document.getElementById(truckId);
+                }, 1800);
 
 
-            if (!viewer || !image) {
-                return;
+            if (button) {
+
+                button.innerHTML =
+                    "⏸ Stop Rotation";
+
             }
 
+        }
 
-            let startX = 0;
-
-            let dragging = false;
+    }
 
 
-            viewer.addEventListener(
-                "mousedown",
-                function (event) {
+    /*
+    ============================================================
+    STOP AUTO ROTATE
+    ============================================================
+    */
 
-                    dragging = true;
+    function stopAutoRotate(truckId) {
 
-                    startX = event.clientX;
+        if (autoRotateTimers[truckId]) {
 
-                    stopAutoRotate(truckId);
-
-                }
+            clearInterval(
+                autoRotateTimers[truckId]
             );
 
 
-            document.addEventListener(
-                "mouseup",
-                function () {
-
-                    dragging = false;
-
-                }
-            );
-
-
-            document.addEventListener(
-                "mousemove",
-                function (event) {
-
-                    if (!dragging) {
-                        return;
-                    }
-
-
-                    const difference =
-                        event.clientX - startX;
-
-
-                    if (Math.abs(difference) > 50) {
-
-                        if (difference > 0) {
-
-                            previousTruck(truckId);
-
-                        }
-
-                        else {
-
-                            nextTruck(truckId);
-
-                        }
-
-
-                        startX =
-                            event.clientX;
-
-                    }
-
-                }
-            );
-
-
-            /*
-            --------------------------------------------------------
-            TOUCH / MOBILE
-            --------------------------------------------------------
-            */
-
-            viewer.addEventListener(
-                "touchstart",
-                function (event) {
-
-                    startX =
-                        event.touches[0].clientX;
-
-                    stopAutoRotate(truckId);
-
-                },
-                { passive: true }
-            );
-
-
-            viewer.addEventListener(
-                "touchmove",
-                function (event) {
-
-                    const currentX =
-                        event.touches[0].clientX;
-
-
-                    const difference =
-                        currentX - startX;
-
-
-                    if (Math.abs(difference) > 50) {
-
-                        if (difference > 0) {
-
-                            previousTruck(truckId);
-
-                        }
-
-                        else {
-
-                            nextTruck(truckId);
-
-                        }
-
-
-                        startX = currentX;
-
-                    }
-
-                },
-                { passive: true }
-            );
+            autoRotateTimers[truckId] = null;
 
         }
 
 
-        /*
-        ============================================================
-        PAGE LOAD
-        ============================================================
-        */
-
-        document.addEventListener(
-            "DOMContentLoaded",
-            function () {
+        const button =
+            document.getElementById(
+                buttonMap[truckId]
+            );
 
 
-                /*
-                ----------------------------------------------------
-                INITIALIZE ALL TRUCKS
-                ----------------------------------------------------
-                */
+        if (button) {
 
-                showTruck(
-                    "truck10Main",
-                    0
-                );
+            button.innerHTML =
+                "🔄 Auto Rotate";
+
+        }
+
+    }
 
 
-                showTruck(
-                    "truck12Main",
-                    0
-                );
+    /*
+    ============================================================
+    DRAG / SWIPE ROTATION
+    ============================================================
+    */
+
+    function enableDrag(viewerId, truckId) {
+
+        const viewer =
+            document.getElementById(viewerId);
 
 
-                showTruck(
-                    "truckLPMain",
-                    0
-                );
+        const image =
+            document.getElementById(truckId);
 
 
-                showTruck(
-                    "truckSCMain",
-                    0
-                );
+        if (!viewer || !image) {
+            return;
+        }
 
 
-                showTruck(
-                    "truck709Main",
-                    0
-                );
+        let startX = 0;
+
+        let dragging = false;
 
 
-                /*
-                ----------------------------------------------------
-                ENABLE DRAG
-                ----------------------------------------------------
-                */
+        viewer.addEventListener(
+            "mousedown",
+            function (event) {
 
-                enableDrag(
-                    "viewer10",
-                    "truck10Main"
-                );
+                dragging = true;
 
+                startX = event.clientX;
 
-                enableDrag(
-                    "viewer12",
-                    "truck12Main"
-                );
-
-
-                enableDrag(
-                    "viewerLP",
-                    "truckLPMain"
-                );
-
-
-                enableDrag(
-                    "viewerSC",
-                    "truckSCMain"
-                );
-
-
-                enableDrag(
-                    "viewer709",
-                    "truck709Main"
-                );
-
-
-                /*
-                ----------------------------------------------------
-                PRELOAD IMAGES
-                ----------------------------------------------------
-                */
-
-                Object.values(truckViews)
-                    .flat()
-                    .forEach(function (src) {
-
-                        const img =
-                            new Image();
-
-                        img.src = src;
-
-                    });
+                stopAutoRotate(truckId);
 
             }
         );
 
-    </script>
+
+        document.addEventListener(
+            "mouseup",
+            function () {
+
+                dragging = false;
+
+            }
+        );
+
+
+        document.addEventListener(
+            "mousemove",
+            function (event) {
+
+                if (!dragging) {
+                    return;
+                }
+
+
+                const difference =
+                    event.clientX - startX;
+
+
+                if (Math.abs(difference) > 50) {
+
+                    if (difference > 0) {
+
+                        previousTruck(truckId);
+
+                    }
+
+                    else {
+
+                        nextTruck(truckId);
+
+                    }
+
+
+                    startX =
+                        event.clientX;
+
+                }
+
+            }
+        );
+
+
+        /*
+        --------------------------------------------------------
+        TOUCH / MOBILE
+        --------------------------------------------------------
+        */
+
+        viewer.addEventListener(
+            "touchstart",
+            function (event) {
+
+                startX =
+                    event.touches[0].clientX;
+
+                stopAutoRotate(truckId);
+
+            },
+            { passive: true }
+        );
+
+
+        viewer.addEventListener(
+            "touchmove",
+            function (event) {
+
+                const currentX =
+                    event.touches[0].clientX;
+
+
+                const difference =
+                    currentX - startX;
+
+
+                if (Math.abs(difference) > 50) {
+
+                    if (difference > 0) {
+
+                        previousTruck(truckId);
+
+                    }
+
+                    else {
+
+                        nextTruck(truckId);
+
+                    }
+
+
+                    startX = currentX;
+
+                }
+
+            },
+            { passive: true }
+        );
+
+    }
+
+
+    /*
+    ============================================================
+    PAGE LOAD
+    ============================================================
+    */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+
+            /*
+            ----------------------------------------------------
+            INITIALIZE ALL TRUCKS
+            ----------------------------------------------------
+            */
+
+            showTruck(
+                "truck10Main",
+                0
+            );
+
+
+            showTruck(
+                "truck12Main",
+                0
+            );
+
+
+            showTruck(
+                "truckLPMain",
+                0
+            );
+
+
+            showTruck(
+                "truckSCMain",
+                0
+            );
+
+
+            showTruck(
+                "truck709Main",
+                0
+            );
+
+
+            /*
+            ----------------------------------------------------
+            ENABLE DRAG
+            ----------------------------------------------------
+            */
+
+            enableDrag(
+                "viewer10",
+                "truck10Main"
+            );
+
+
+            enableDrag(
+                "viewer12",
+                "truck12Main"
+            );
+
+
+            enableDrag(
+                "viewerLP",
+                "truckLPMain"
+            );
+
+
+            enableDrag(
+                "viewerSC",
+                "truckSCMain"
+            );
+
+
+            enableDrag(
+                "viewer709",
+                "truck709Main"
+            );
+
+
+            /*
+            ----------------------------------------------------
+            PRELOAD IMAGES
+            ----------------------------------------------------
+            */
+
+            Object.values(truckViews)
+                .flat()
+                .forEach(function (src) {
+
+                    const img =
+                        new Image();
+
+                    img.src = src;
+
+                });
+
+        }
+    );
+
+</script>
+```
 
 </body>
 
