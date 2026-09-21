@@ -130,12 +130,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         };
 
+
     });
 
 
     /* =====================================================
        MANUAL ROTATION
-       ===================================================== */
+    ===================================================== */
 
     document.querySelectorAll(".rotate-btn").forEach(function (button) {
 
@@ -173,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* =====================================================
        AUTO ROTATION
-       ===================================================== */
+    ===================================================== */
 
     document.querySelectorAll(".auto-rotate-btn").forEach(function (button) {
 
